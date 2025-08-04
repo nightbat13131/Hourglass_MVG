@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="HourglassMVG"
-run/main_scene="uid://u5rx8l44jbe8"
+run/main_scene="uid://pdjjwbe2agic"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GUIDE="*res://addons/guide/guide.gd"
 
 [display]
 
@@ -26,7 +30,17 @@ window/stretch/mode="canvas_items"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/guide/plugin.cfg")
+
+[layer_names]
+
+2d_render/layer_2="Walls"
+2d_physics/layer_2="Player"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.00688756, 0.160251, 0.320785, 1)

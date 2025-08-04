@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://begcfvth2yy3j"]
+
+[ext_resource type="Script" uid="uid://ccms35rsddrss" path="res://character/character.gd" id="1_yf0e5"]
+[ext_resource type="Texture2D" uid="uid://eo8wter2ba3j" path="res://icon.svg" id="2_1l1n4"]
+[ext_resource type="Resource" uid="uid://dlmievewarnnb" path="res://guide/move.tres" id="2_ugqs2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1l1n4"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ugqs2"]
+radius = 16.0
+
+[node name="Character" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_yf0e5")
+move = ExtResource("2_ugqs2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1l1n4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1l1n4")
+debug_color = Color(0.823163, 0.906817, 0.948562, 0.419608)
+
+[node name="Area2D_Activator" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Activator"]
+shape = SubResource("CircleShape2D_ugqs2")
+debug_color = Color(0.815552, 0.33808, 0.590092, 0.42)
+
+[node name="Camera2D" type="Camera2D" parent="."]
