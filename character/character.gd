@@ -1,4 +1,4 @@
-class_name Character extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 var _max_speed := 100.0 # px per second
 var _acceleration := 5.0 #px per second2

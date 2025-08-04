@@ -18,12 +18,14 @@ config/icon="res://icon.svg"
 [autoload]
 
 GUIDE="*res://addons/guide/guide.gd"
+_SoundManager="*res://arcitecture/sound_manager.tscn"
 
 [display]
 
 window/size/viewport_width=800
 window/size/viewport_height=800
 window/stretch/mode="canvas_items"
+window/stretch/scale=2.0
 
 [editor]
 
@@ -34,13 +36,19 @@ version_control/autoload_on_startup=true
 
 enabled=PackedStringArray("res://addons/guide/plugin.cfg")
 
+[gui]
+
+theme/custom="uid://7v6cjbkyd8eo"
+
 [layer_names]
 
 2d_render/layer_2="Walls"
-2d_physics/layer_2="Player"
+2d_physics/layer_2="Walls"
+2d_physics/layer_3="Player"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=3
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.00688756, 0.160251, 0.320785, 1)

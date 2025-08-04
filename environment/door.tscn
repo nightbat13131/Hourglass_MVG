@@ -2,14 +2,37 @@
 
 [ext_resource type="Script" uid="uid://cep52t1vaiqbs" path="res://environment/door.gd" id="1_05hnu"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5sfe2"]
-radius = 8.0
-height = 32.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05hnu"]
+size = Vector2(28, 28)
 
-[node name="Door" type="Area2D"]
-collision_layer = 0
-collision_mask = 2
+[node name="Door" type="Node2D"]
 script = ExtResource("1_05hnu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_5sfe2")
+[node name="Area_PlayerAverage" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_PlayerAverage"]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_05hnu")
+debug_color = Color(0.988235, 0.854902, 0.0588235, 0.419608)
+
+[node name="Area2D_close_door_inside" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D_close_door_inside"]
+polygon = PackedVector2Array(0, 23, 23, 0, 0, -24)
+
+[node name="Area2D_close_door_outside" type="Area2D" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 0.898039, 1)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D_close_door_outside"]
+polygon = PackedVector2Array(0, 23, -25, 0, 0, -24)
+
+[connection signal="body_shape_entered" from="Area2D_close_door_outside" to="." method="_on_area_2d_close_door_outside_body_shape_entered"]
