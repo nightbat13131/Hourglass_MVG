@@ -28,15 +28,30 @@ func _ready() -> void:
 		if each_child is Door:
 			each_child.parent_room = self
 
-func activate(door_point: Vector2, door_angle: float, fast: bool) -> void:
-	#print_debug(self, fast)
-	set_global_position(door_point)
-	set_rotation(door_angle-PI)
+func summon(summoning_door: Door, internal_door: Door) -> void:
+	set_global_rotation(0.0)
+	var target_qTAUs = (roundi(summoning_door.global_rotation/ (TAU/4.0))-2)%4
+	var current_qTAUs = roundi(internal_door.global_rotation/ (TAU/4.0))%4
+	var parent_rotation = target_qTAUs - current_qTAUs
+	#prints(target_qTAUs , "(",summoning_door.global_rotation/ (TAU/4.0),")", current_qTAUs)
+	set_global_rotation( (parent_rotation) * (TAU/4.0))
+	
+	var target_pos = summoning_door.global_position
+	set_global_position(target_pos)
+	var target_offset = target_pos - internal_door.global_position
+	set_global_position(target_pos + target_offset)
+	# prints(target_pos, internal_position, global_position)
+
+	
+	activate(target_pos, 0.0 ,  true)
+
+func activate(door_point: Vector2, rotation_delta: float, fast: bool) -> void:
 	var current_color = get_modulate()
+	set_collision_enabled(true)
 	set_visible(true)
 	if fast: 
 		set_modulate( Color(Color.WHITE, 1.0) )
-		set_process_mode(Node.PROCESS_MODE_INHERIT)
+		set_process_mode.bind(Node.PROCESS_MODE_INHERIT).call_deferred()
 	else: 
 		if alpha_tween != null: 
 			if alpha_tween.is_valid():
@@ -47,10 +62,13 @@ func activate(door_point: Vector2, door_angle: float, fast: bool) -> void:
 func deactivate(fast: bool) -> void:
 	#print_debug(self, fast)
 	var current_color = get_modulate()
+	set_collision_enabled(false)
+	for every_door in _get_doors():
+		every_door.set_is_asleep(false)
 	if fast:
 		set_modulate( Color(Color.WHITE, 0.0) )
 		set_visible(false)
-		set_process_mode(Node.PROCESS_MODE_DISABLED)
+		set_process_mode.bind(Node.PROCESS_MODE_DISABLED).call_deferred()
 	else: 
 		if alpha_tween != null: 
 			if alpha_tween.is_valid():
@@ -60,13 +78,31 @@ func deactivate(fast: bool) -> void:
 		alpha_tween.tween_callback(set_process_mode.bind(Node.PROCESS_MODE_DISABLED))
 		alpha_tween.tween_callback(set_visible.bind(false))
 
-func _draw() -> void:
-	if Engine.is_editor_hint():
-		draw_line(Vector2.ZERO, Vector2.RIGHT*32, Color.WHEAT, 3.0)
+func _get_doors() -> Array[Door]:
+	var out : Array[Door] = []
+	for each_child in get_children():
+		if each_child is Door:
+			out.append(each_child)
+	return out
+
+func has_door_for(_room_type: RoomTypes) -> bool:
+	for each_door in _get_doors():
+		if each_door.room_type == _room_type:
+			return true
+	return false
+
+func get_door_from(_room_type: RoomTypes) -> Door:
+	var doors : Array[Door] = []
+	for each_door in _get_doors():
+		if each_door.room_type == _room_type:
+			doors.append(each_door)
+	if doors.is_empty():
+		return null
+	return doors.pick_random()
 
 static func get_room(target_room_type: Room.RoomTypes, source_room_type: Room.RoomTypes) -> Room: # will eventually ask for a room type
 	var next_room : Room
-	var filtered_rooms = room_list.filter(_filter_room_type.bind(target_room_type))
+	var filtered_rooms = room_list.filter(_filter_room_type.bind(target_room_type, source_room_type))
 	if filtered_rooms.size() == 0:
 		printerr("Room.get_room filtered_rooms is empty. _room_type: ", target_room_type)
 		return null
@@ -80,7 +116,7 @@ static func get_room(target_room_type: Room.RoomTypes, source_room_type: Room.Ro
 		_last_room = next_room
 	return next_room
 
-static func _filter_room_type(room: Room, _room_type: RoomTypes) -> bool:
-	if _room_type == RoomTypes.None:
+static func _filter_room_type(room: Room, target_room_type: Room.RoomTypes, source_room_type: Room.RoomTypes) -> bool:
+	if target_room_type == RoomTypes.None or source_room_type == RoomTypes.None :
 		return true
-	return room.room_type == _room_type
+	return room.room_type == target_room_type and room.has_door_for(source_room_type)

@@ -4,4 +4,9 @@
 
 [node name="DebugLayer" type="CanvasLayer"]
 
-[node name="GuideDebugger" parent="." instance=ExtResource("1_5ghsl")]
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GuideDebugger" parent="CenterContainer" instance=ExtResource("1_5ghsl")]
+layout_mode = 2
