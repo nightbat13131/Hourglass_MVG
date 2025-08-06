@@ -17,7 +17,7 @@ static var _last_room: Room
 @export var room_type := RoomTypes.None
 
 var alpha_tween : Tween
-var ALPHA_DURATION := .30
+var ALPHA_DURATION := .10
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -29,20 +29,22 @@ func _ready() -> void:
 			each_child.parent_room = self
 
 func summon(summoning_door: Door, internal_door: Door) -> void:
-	set_global_rotation(0.0)
+	
 	var target_qTAUs = (roundi(summoning_door.global_rotation/ (TAU/4.0))-2)%4
 	var current_qTAUs = roundi(internal_door.global_rotation/ (TAU/4.0))%4
-	var parent_rotation = target_qTAUs - current_qTAUs
-	#prints(target_qTAUs , "(",summoning_door.global_rotation/ (TAU/4.0),")", current_qTAUs)
-	set_global_rotation( (parent_rotation) * (TAU/4.0))
+	if target_qTAUs != current_qTAUs: # not already correct
+		set_global_rotation(0.0)
+		current_qTAUs = roundi(internal_door.global_rotation/ (TAU/4.0))%4
+		var parent_rotation = target_qTAUs - current_qTAUs
+		set_global_rotation( (parent_rotation) * (TAU/4.0))
 	
 	var target_pos = summoning_door.global_position
-	set_global_position(target_pos)
 	var target_offset = target_pos - internal_door.global_position
-	set_global_position(target_pos + target_offset)
-	# prints(target_pos, internal_position, global_position)
+	if target_pos != target_offset: # not already correct
+		set_global_position(target_pos)
+		target_offset = target_pos - internal_door.global_position
+		set_global_position(target_pos + target_offset)
 
-	
 	activate(target_pos, 0.0 ,  true)
 
 func activate(door_point: Vector2, rotation_delta: float, fast: bool) -> void:

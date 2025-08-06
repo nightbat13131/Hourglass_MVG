@@ -22,10 +22,12 @@ _SoundManager="*res://arcitecture/sound_manager.tscn"
 
 [display]
 
-window/size/viewport_width=800
-window/size/viewport_height=800
+window/size/viewport_width=1000
+window/size/viewport_height=1000
+window/size/borderless=true
 window/stretch/mode="canvas_items"
-window/stretch/scale=2.0
+window/stretch/aspect="expand"
+window/stretch/scale=3.0
 
 [editor]
 

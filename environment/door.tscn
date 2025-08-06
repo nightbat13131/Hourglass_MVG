@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvcleljkq6rj3"]
+[gd_scene load_steps=6 format=3 uid="uid://cvcleljkq6rj3"]
 
 [ext_resource type="Script" uid="uid://cep52t1vaiqbs" path="res://environment/door.gd" id="1_05hnu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_05hnu"]
-size = Vector2(32, 32)
+size = Vector2(46, 99)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jehm5"]
+size = Vector2(48, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_275g2"]
+size = Vector2(48, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_are4n"]
+size = Vector2(96, 112)
 
 [node name="Door" type="Node2D"]
 script = ExtResource("1_05hnu")
@@ -14,7 +23,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_PlayerAverage"]
-rotation = 0.785398
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_05hnu")
 debug_color = Color(0.988235, 0.854902, 0.0588235, 0.419608)
 
@@ -23,8 +32,10 @@ unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D_close_door_inside"]
-polygon = PackedVector2Array(0, 24, -24, 0, 0, -24)
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D_close_door_inside"]
+position = Vector2(-20, 0)
+shape = SubResource("RectangleShape2D_jehm5")
+debug_color = Color(0.0588235, 0.854902, 0.996078, 0.419608)
 
 [node name="Label" type="Label" parent="Area2D_close_door_inside"]
 offset_right = 40.0
@@ -37,8 +48,10 @@ self_modulate = Color(1, 1, 0.898039, 1)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D_close_door_outside"]
-polygon = PackedVector2Array(0, 24, 24, 0, 0, -24)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D_close_door_outside"]
+position = Vector2(20, 0)
+shape = SubResource("RectangleShape2D_275g2")
+debug_color = Color(0.0588235, 0.854902, 0.996078, 0.419608)
 
 [node name="Label2" type="Label" parent="Area2D_close_door_outside"]
 anchors_preset = 3
@@ -59,8 +72,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_sleep_helper"]
-rotation = 0.785398
-shape = SubResource("RectangleShape2D_05hnu")
+shape = SubResource("RectangleShape2D_are4n")
 debug_color = Color(0.0588235, 0.854902, 0.996078, 0.419608)
 
 [connection signal="body_shape_entered" from="Area2D_close_door_outside" to="." method="_on_area_2d_close_door_outside_body_shape_entered"]

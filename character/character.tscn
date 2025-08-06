@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://ccms35rsddrss" path="res://character/character.gd" id="1_yf0e5"]
 [ext_resource type="Resource" uid="uid://dlmievewarnnb" path="res://guide/move.tres" id="2_ugqs2"]
-[ext_resource type="Texture2D" uid="uid://cw4ruasic4hdy" path="res://images/Alex_idle_16x16.png" id="3_ugqs2"]
+[ext_resource type="Texture2D" uid="uid://ctscsiw1ueh8d" path="res://images/hourglass2.png" id="3_ugqs2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hx151"]
 atlas = ExtResource("3_ugqs2")
-region = Rect2(47.7597, 0, 16.2403, 32)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1l1n4"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0rvpn"]
+radius = 16.0
+height = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ugqs2"]
 radius = 16.0
@@ -23,9 +23,13 @@ move = ExtResource("2_ugqs2")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_hx151")
+hframes = 56
+vframes = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_1l1n4")
+visible = false
+position = Vector2(-2, 13)
+shape = SubResource("CapsuleShape2D_0rvpn")
 debug_color = Color(0.823163, 0.906817, 0.948562, 0.419608)
 
 [node name="Area2D_Reach" type="Area2D" parent="."]

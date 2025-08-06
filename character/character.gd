@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
-var _max_speed := 100.0 # px per second
-var _acceleration := 5.0 #px per second2
+var _max_speed := Utilities.GRID_WIDTH * 10.0 # px per second
+var _acceleration := Utilities.GRID_WIDTH / 4.0 #px per second2
 var _speed := _max_speed
 
 

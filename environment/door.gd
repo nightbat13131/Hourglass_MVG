@@ -36,7 +36,7 @@ var _is_open := false
 ## wait untill one of the sides are "not
 
 func _ready() -> void:
-	##TODO: snap to the 16*16 grid
+	##TODO: snap to the local 16*16 grid
 	_all_doors.append(self)
 	area_player_average.body_entered.connect(_on_body_change.bind(true, area_player_average ))
 	area_player_average.body_exited.connect(_on_body_change.bind(false, area_player_average))
@@ -49,22 +49,30 @@ func _ready() -> void:
 func _draw() -> void:
 	draw_polygon(
 		PackedVector2Array([
-			Vector2(-4, 16), Vector2(4, 16),
-			Vector2(4, -16), Vector2(-4, -16)  ] 
+			Vector2(-1*Utilities.GRID_WIDTH/4, Utilities.GRID_HEIGHT), Vector2(Utilities.GRID_WIDTH/4, Utilities.GRID_HEIGHT),
+			Vector2(Utilities.GRID_WIDTH/4, -1*Utilities.GRID_HEIGHT), Vector2(-1*Utilities.GRID_WIDTH/4, -1*Utilities.GRID_HEIGHT)  ] 
 			),
 		[Color.WHITE]
 	)
 	if Engine.is_editor_hint():
-		draw_line(Vector2.ZERO, Vector2.from_angle( 0 * (PI/2.0) )*32, Color.WHEAT, 3.0)
+		draw_line(Vector2.ZERO, Vector2.from_angle( 0 * (PI/2.0) )*Utilities.GRID_WIDTH*3, Color.WHEAT, 3.0)
 
 func _on_area_entered(_area: Area2D) -> void:
 	_open_door()
 
 func sync_with(partner: Door) -> void:
+	var _old_rooms : Array[Room] = []
+	# deactivating old rooms if they fail to deactivate correctly
+	for each_door0 in _last_synced_doors:
+		_old_rooms.append(each_door0.parent_room)
 	_last_synced_doors = [self, partner]
 	_temp_partner_door = partner
+	for each_door1 in _last_synced_doors: # don't erase any rooms that are for the current doors
+		_old_rooms.erase(each_door1.parent_room)
+	for each_room in _old_rooms:
+		each_room.deactivate(true)
 	parent_room.summon(partner, self)
-	set_is_asleep(true)
+	set_is_asleep(true) # needs to not trigger functionality untill the overlapped door is done
 
 func _open_door() -> void:
 	if !_last_synced_doors.has(self) or _temp_partner_door == null:
