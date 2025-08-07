@@ -2,6 +2,9 @@ class_name Hourglass extends Node2D
 
 static var _current: Hourglass
 
+# full is the number of activites to do in the world?
+# the sand falls when you complete an activity ?
+
 
 static var fall_speed := 1.0 # grain / second
 

@@ -1,14 +1,15 @@
-@tool
+#@tool
 class_name Door extends Node2D
-
-static var _last_door_walked: Door
-static var _last_door_mirrored : Door
 
 static var _last_synced_doors : Array[Door]
 
 static var _all_doors : Array[Door]
 
-@export var room_type := Room.RoomTypes.None
+@export var room_type := Room.RoomTypes.None : 
+	get = get_connected_room_type
+@export var _true_partner_door: Door
+
+@export var _is_stairs := false
 
 @onready var area_player_average: Area2D = %Area_PlayerAverage
 @onready var area_2d_close_door_inside: Area2D = %Area2D_close_door_inside
@@ -17,6 +18,7 @@ static var _all_doors : Array[Door]
 
 var parent_room : Room
 var _temp_partner_door: Door
+
 
 var _is_asleep := false: set = set_is_asleep
 var _player_found := false
@@ -36,7 +38,16 @@ var _is_open := false
 ## wait untill one of the sides are "not
 
 func _ready() -> void:
-	##TODO: snap to the local 16*16 grid
+	if Engine.is_editor_hint():
+		return
+	
+	var interval = Utilities.GRID_HEIGHT/2.0
+	
+	var x_mod = round(position.x/interval)
+	var y_mod = round(position.y/interval)
+	set_position(Vector2(x_mod*interval, y_mod*interval))
+	
+	
 	_all_doors.append(self)
 	area_player_average.body_entered.connect(_on_body_change.bind(true, area_player_average ))
 	area_player_average.body_exited.connect(_on_body_change.bind(false, area_player_average))
@@ -46,16 +57,31 @@ func _ready() -> void:
 	area_2d_close_door_outside.body_exited.connect(_on_body_change.bind(false, area_2d_close_door_outside))
 	area_2d_sleep_helper.body_exited.connect(_on_area_2d_sleep_helper_body_exited)
 
+func get_connected_room_type() -> Room.RoomTypes:
+	if _true_partner_door != null:
+		return _true_partner_door.get_parent_room_type()
+	else:
+		printerr(self, " is missing a _true_partner_door")
+	return room_type
+
+func get_parent_room_type() -> Room.RoomTypes:
+	if parent_room: 
+		return parent_room.get_room_type()
+	else: 
+		printerr(self, " has no parent room")
+		return Room.RoomTypes.None
+
 func _draw() -> void:
 	draw_polygon(
 		PackedVector2Array([
-			Vector2(-1*Utilities.GRID_WIDTH/4, Utilities.GRID_HEIGHT), Vector2(Utilities.GRID_WIDTH/4, Utilities.GRID_HEIGHT),
-			Vector2(Utilities.GRID_WIDTH/4, -1*Utilities.GRID_HEIGHT), Vector2(-1*Utilities.GRID_WIDTH/4, -1*Utilities.GRID_HEIGHT)  ] 
+			Vector2(-1*Utilities.GRID_WIDTH/4.0, Utilities.GRID_HEIGHT), Vector2(Utilities.GRID_WIDTH/4.0, Utilities.GRID_HEIGHT),
+			Vector2(Utilities.GRID_WIDTH/4.0, -1*Utilities.GRID_HEIGHT), Vector2(-1*Utilities.GRID_WIDTH/4.0, -1*Utilities.GRID_HEIGHT)  ] 
 			),
-		[Color.WHITE]
+		[Color.TAN]
 	)
 	if Engine.is_editor_hint():
 		draw_line(Vector2.ZERO, Vector2.from_angle( 0 * (PI/2.0) )*Utilities.GRID_WIDTH*3, Color.WHEAT, 3.0)
+		draw_line(Vector2.from_angle( 1 * (PI/2.0) )*Utilities.GRID_WIDTH, Vector2.from_angle( -1 * (PI/2.0) )*Utilities.GRID_WIDTH, Color.BLUE, 2.0)
 
 func _on_area_entered(_area: Area2D) -> void:
 	_open_door()
@@ -77,6 +103,9 @@ func sync_with(partner: Door) -> void:
 func _open_door() -> void:
 	if !_last_synced_doors.has(self) or _temp_partner_door == null:
 		_temp_partner_door = _find_temp_match_door()
+	if _temp_partner_door == null:
+		printerr("_temp_partner_door still null")
+		return
 	_temp_partner_door.sync_with(self)
 	_is_open = true
 	set_modulate(Color.ORANGE_RED)
@@ -118,14 +147,19 @@ func _on_body_change(body: Node2D, is_entering: bool, area: Area2D) -> void:
 func _find_temp_match_door() -> Door: # going to have a real match door at some point - the room the door is SUPPOsed to lead to 
 	var posible_doors = _all_doors.duplicate()
 	posible_doors = posible_doors.filter(__door_match_filter)
+	if posible_doors.is_empty():
+		printerr("no match found for get_connected_room_type ", get_connected_room_type(), " while in parent_room ", parent_room, ". ", self)
+		return null
 	return posible_doors.pick_random()
 
 func __door_match_filter(potental_door: Door) -> bool:
+	if potental_door._is_stairs != _is_stairs:
+		return false
 	if potental_door.parent_room == parent_room: # no looping into self
 		return false
-	if potental_door.parent_room.room_type != room_type:  # door is for the wrong kind of room
+	if potental_door.parent_room.get_room_type() != get_connected_room_type():  # door is for the wrong kind of room
 		return false
-	if potental_door.room_type != parent_room.room_type:
+	if potental_door.get_connected_room_type() != parent_room.get_room_type():
 		return false # door could not lead back here
 	return true
 
@@ -138,3 +172,15 @@ func set_is_asleep(is_asleep: bool) -> void:
 	if _is_asleep != is_asleep:
 		_is_asleep = is_asleep
 		area_2d_sleep_helper.set_visible(_is_asleep)
+
+func _door_setup_check() -> void:
+	var text: String = " : "
+	if _true_partner_door == null:
+		text += "_true_partner_door is null."
+	else:
+		if _true_partner_door._true_partner_door != self:
+			text += "my true partner does not point back at me: _true_partner_door._true_partner_door = " 
+			text += str(_true_partner_door)
+			
+	printerr(self, text)
+	

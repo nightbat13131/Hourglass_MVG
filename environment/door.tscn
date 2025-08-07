@@ -19,6 +19,7 @@ script = ExtResource("1_05hnu")
 
 [node name="Area_PlayerAverage" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -29,6 +30,7 @@ debug_color = Color(0.988235, 0.854902, 0.0588235, 0.419608)
 
 [node name="Area2D_close_door_inside" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -44,6 +46,7 @@ text = "Outside"
 
 [node name="Area2D_close_door_outside" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 self_modulate = Color(1, 1, 0.898039, 1)
 collision_layer = 0
 collision_mask = 4

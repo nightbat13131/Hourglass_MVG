@@ -1,4 +1,3 @@
-@tool
 class_name Room extends TileMapLayer
 
 enum RoomTypes {
@@ -6,6 +5,7 @@ enum RoomTypes {
 	Bedroom = 1, 
 	Bathroom = 2, 
 	Kitchen = 3,
+	Other = 8, 
 	Garage = 9,
 	Outside = 10,
 	Hallway = 20,
@@ -14,7 +14,7 @@ enum RoomTypes {
 static var room_list : Array[Room] = []
 static var _last_room: Room
 
-@export var room_type := RoomTypes.None
+@export var _room_type := RoomTypes.None : get = get_room_type
 
 var alpha_tween : Tween
 var ALPHA_DURATION := .10
@@ -22,6 +22,8 @@ var ALPHA_DURATION := .10
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	if get_room_type() == RoomTypes.None:
+		printerr(self, "Has no room type")
 	deactivate(true)
 	room_list.append(self)
 	for each_child in get_children():
@@ -44,10 +46,9 @@ func summon(summoning_door: Door, internal_door: Door) -> void:
 		set_global_position(target_pos)
 		target_offset = target_pos - internal_door.global_position
 		set_global_position(target_pos + target_offset)
+	activate(true)
 
-	activate(target_pos, 0.0 ,  true)
-
-func activate(door_point: Vector2, rotation_delta: float, fast: bool) -> void:
+func activate(fast: bool) -> void:
 	var current_color = get_modulate()
 	set_collision_enabled(true)
 	set_visible(true)
@@ -80,6 +81,9 @@ func deactivate(fast: bool) -> void:
 		alpha_tween.tween_callback(set_process_mode.bind(Node.PROCESS_MODE_DISABLED))
 		alpha_tween.tween_callback(set_visible.bind(false))
 
+func get_room_type() -> RoomTypes:
+	return _room_type
+
 func _get_doors() -> Array[Door]:
 	var out : Array[Door] = []
 	for each_child in get_children():
@@ -87,16 +91,16 @@ func _get_doors() -> Array[Door]:
 			out.append(each_child)
 	return out
 
-func has_door_for(_room_type: RoomTypes) -> bool:
+func has_door_for(target_room_type: RoomTypes) -> bool:
 	for each_door in _get_doors():
-		if each_door.room_type == _room_type:
+		if each_door.get_connected_room_type() == target_room_type:
 			return true
 	return false
 
-func get_door_from(_room_type: RoomTypes) -> Door:
+func get_door_from(target_room_type: RoomTypes) -> Door:
 	var doors : Array[Door] = []
 	for each_door in _get_doors():
-		if each_door.room_type == _room_type:
+		if each_door.get_room_type() == target_room_type:
 			doors.append(each_door)
 	if doors.is_empty():
 		return null
@@ -121,4 +125,4 @@ static func get_room(target_room_type: Room.RoomTypes, source_room_type: Room.Ro
 static func _filter_room_type(room: Room, target_room_type: Room.RoomTypes, source_room_type: Room.RoomTypes) -> bool:
 	if target_room_type == RoomTypes.None or source_room_type == RoomTypes.None :
 		return true
-	return room.room_type == target_room_type and room.has_door_for(source_room_type)
+	return room.get_room_type() == target_room_type and room.has_door_for(source_room_type)
