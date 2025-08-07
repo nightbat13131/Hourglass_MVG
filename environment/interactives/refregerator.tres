@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InteractionResource" load_steps=2 format=3 uid="uid://haskggo5b1lb"]
+
+[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="1_f7hgq"]
+
+[resource]
+script = ExtResource("1_f7hgq")
+pre_text = "Sneak Step-Dad's Chocolate"
+pre_sprite_frame = Vector2i(0, 0)
+durring_text = "how has he not noticed?"
+durring_sprite_frame = Vector2i(0, 1)
+post_text = "really should stop doing that"
+post_sprite_frame = Vector2i(0, 0)
+metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"

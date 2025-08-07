@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InteractionResource" load_steps=2 format=3 uid="uid://dkxs7sh03m1x7"]
+
+[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="1_gynw5"]
+
+[resource]
+script = ExtResource("1_gynw5")
+pre_text = "Poison Family Dinner"
+pre_sprite_frame = Vector2i(0, 0)
+durring_text = "Never Actually Did That"
+durring_sprite_frame = Vector2i(1, 0)
+post_text = "At least I learned to cook."
+post_sprite_frame = Vector2i(2, 0)
+metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"

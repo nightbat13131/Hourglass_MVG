@@ -45,6 +45,7 @@ theme/custom="uid://7v6cjbkyd8eo"
 [layer_names]
 
 2d_render/layer_2="Walls"
+2d_physics/layer_1="Action"
 2d_physics/layer_2="Walls"
 2d_physics/layer_3="Player"
 

@@ -10,11 +10,14 @@ static var _all_doors : Array[Door]
 @export var _is_stairs := false
 @export var _is_car_garage := false
 
+
+
 @onready var area_player_average: Area2D = %Area_PlayerAverage
 @onready var area_2d_close_door_inside: Area2D = %Area2D_close_door_inside
 @onready var area_2d_close_door_outside: Area2D = %Area2D_close_door_outside
 @onready var area_2d_sleep_helper: Area2D = %Area2D_sleep_helper
 
+@onready var garage_image: TextureRect = %GarageImage
 
 var parent_room : Room
 var _temp_partner_door: Door
@@ -28,10 +31,7 @@ var _player_outside := false
 var _is_open := false
 
 func _ready() -> void:
-	var interval = Utilities.GRID_HEIGHT/2.0
-	var x_mod = round(position.x/interval)
-	var y_mod = round(position.y/interval)
-	set_position(Vector2(x_mod*interval, y_mod*interval))
+	Utilities.snap_to_interval(self, 2)
 	if Engine.is_editor_hint():
 		return
 	
@@ -52,7 +52,8 @@ func _ready() -> void:
 			each_collision_shape.set_shape( each_collision_shape.get_shape().duplicate())
 			coll_height = each_collision_shape.get_shape().size.y
 			each_collision_shape.get_shape().size.y = coll_height *2
-
+	else: 
+		garage_image.queue_free()
 
 func get_connected_room_type() -> Room.RoomTypes:
 	if _true_partner_door != null:
@@ -120,10 +121,13 @@ func _on_body_change(body: Node2D, is_entering: bool, area: Area2D) -> void:
 	match area:
 		area_player_average:
 			_player_found = is_entering
+			area_player_average.set_visible(is_entering)
 		area_2d_close_door_inside:
 			_player_inside = is_entering
+			area_2d_close_door_inside.set_visible(is_entering)
 		area_2d_close_door_outside:
 			_player_outside = is_entering
+			area_2d_close_door_outside.set_visible(is_entering)
 		_:
 			printerr("Door._on_body_change area: ", area)
 	if _is_asleep:
@@ -165,8 +169,10 @@ func __door_match_filter(potental_door: Door) -> bool:
 
 func _on_area_2d_sleep_helper_body_exited(body: Node2D) -> void:
 	if body is Player:
-		if _is_asleep:
-			set_is_asleep(false)
+		print(self, "sleep area left")
+		#if _is_asleep:
+		print("turning off sleep for", self , _is_asleep)
+		set_is_asleep(false)
 
 func set_is_asleep(is_asleep: bool) -> void:
 	if _is_asleep != is_asleep:

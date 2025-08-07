@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://begcfvth2yy3j"]
+[gd_scene load_steps=9 format=3 uid="uid://begcfvth2yy3j"]
 
 [ext_resource type="Script" uid="uid://ccms35rsddrss" path="res://character/character.gd" id="1_yf0e5"]
 [ext_resource type="Resource" uid="uid://dlmievewarnnb" path="res://guide/move.tres" id="2_ugqs2"]
+[ext_resource type="Resource" uid="uid://ci736fk7cvhpm" path="res://guide/interact.tres" id="3_hx151"]
 [ext_resource type="Texture2D" uid="uid://ctscsiw1ueh8d" path="res://images/hourglass2.png" id="3_ugqs2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hx151"]
@@ -12,13 +13,17 @@ radius = 16.0
 height = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ugqs2"]
-radius = 16.0
+radius = 72.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ugqs2"]
+light_mode = 1
 
 [node name="Character" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_yf0e5")
 move = ExtResource("2_ugqs2")
+interact = ExtResource("3_hx151")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
@@ -33,13 +38,25 @@ shape = SubResource("CapsuleShape2D_0rvpn")
 debug_color = Color(0.823163, 0.906817, 0.948562, 0.419608)
 
 [node name="Area2D_Reach" type="Area2D" parent="."]
-visible = false
-collision_layer = 2
-collision_mask = 0
+unique_name_in_owner = true
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Reach"]
+visible = false
 shape = SubResource("CircleShape2D_ugqs2")
 debug_color = Color(0.815552, 0.33808, 0.590092, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
+
+[node name="ActionLabel" type="Label" parent="."]
+unique_name_in_owner = true
+light_mask = 4
+visibility_layer = 4
+material = SubResource("CanvasItemMaterial_ugqs2")
+offset_left = 19.0
+offset_top = -53.0
+offset_right = 106.0
+offset_bottom = -30.0
+text = "Action Text"

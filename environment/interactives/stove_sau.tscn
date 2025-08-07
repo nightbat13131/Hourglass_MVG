@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dujlg4f48blgb"]
+
+[ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_tb3po"]
+[ext_resource type="Resource" uid="uid://dkxs7sh03m1x7" path="res://environment/interactives/sau_stove.tres" id="2_uxs4r"]
+[ext_resource type="Texture2D" uid="uid://ivctmadsdeij" path="res://images/actions/sau_stove.png" id="3_xcan8"]
+
+[sub_resource type="Gradient" id="Gradient_menm0"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tb3po"]
+gradient = SubResource("Gradient_menm0")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvmin"]
+size = Vector2(48, 68)
+
+[node name="Stove_sau" type="StaticBody2D"]
+script = ExtResource("1_tb3po")
+_res = ExtResource("2_uxs4r")
+metadata/_custom_type_script = "uid://b27dj4q5es4ku"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -45.0
+offset_right = 26.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_tb3po")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("3_xcan8")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_bvmin")
