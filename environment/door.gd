@@ -1,20 +1,20 @@
-#@tool
+@tool
 class_name Door extends Node2D
 
 static var _last_synced_doors : Array[Door]
 
 static var _all_doors : Array[Door]
 
-@export var room_type := Room.RoomTypes.None : 
-	get = get_connected_room_type
 @export var _true_partner_door: Door
 
 @export var _is_stairs := false
+@export var _is_car_garage := false
 
 @onready var area_player_average: Area2D = %Area_PlayerAverage
 @onready var area_2d_close_door_inside: Area2D = %Area2D_close_door_inside
 @onready var area_2d_close_door_outside: Area2D = %Area2D_close_door_outside
 @onready var area_2d_sleep_helper: Area2D = %Area2D_sleep_helper
+
 
 var parent_room : Room
 var _temp_partner_door: Door
@@ -27,26 +27,15 @@ var _player_outside := false
 
 var _is_open := false
 
-
-
-# when the player leaves...
-# notfound, inside, not_outside, 
-## close and keep current room
-# notfound, notinside, outside, 
-## close and hide current room
-# notfound, inside, outside, 
-## wait untill one of the sides are "not
-
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		return
-	
 	var interval = Utilities.GRID_HEIGHT/2.0
-	
 	var x_mod = round(position.x/interval)
 	var y_mod = round(position.y/interval)
 	set_position(Vector2(x_mod*interval, y_mod*interval))
+	if Engine.is_editor_hint():
+		return
 	
+	_door_setup_check()
 	
 	_all_doors.append(self)
 	area_player_average.body_entered.connect(_on_body_change.bind(true, area_player_average ))
@@ -56,13 +45,21 @@ func _ready() -> void:
 	area_2d_close_door_outside.body_entered.connect(_on_body_change.bind(true, area_2d_close_door_outside))
 	area_2d_close_door_outside.body_exited.connect(_on_body_change.bind(false, area_2d_close_door_outside))
 	area_2d_sleep_helper.body_exited.connect(_on_area_2d_sleep_helper_body_exited)
+	if _is_car_garage:
+		var coll_height: float
+		for each_collision_shape : CollisionShape2D in [ %CollisionShape_Player, %CollisionShape2D_inside, %CollisionShape2D_outside, %CollisionShape2D_Sleep]:
+			# assuming all rectangles
+			each_collision_shape.set_shape( each_collision_shape.get_shape().duplicate())
+			coll_height = each_collision_shape.get_shape().size.y
+			each_collision_shape.get_shape().size.y = coll_height *2
+
 
 func get_connected_room_type() -> Room.RoomTypes:
 	if _true_partner_door != null:
 		return _true_partner_door.get_parent_room_type()
 	else:
 		printerr(self, " is missing a _true_partner_door")
-	return room_type
+	return Room.RoomTypes.None
 
 func get_parent_room_type() -> Room.RoomTypes:
 	if parent_room: 
@@ -72,10 +69,11 @@ func get_parent_room_type() -> Room.RoomTypes:
 		return Room.RoomTypes.None
 
 func _draw() -> void:
+	var height = Utilities.GRID_HEIGHT * ( 2 if _is_car_garage else 1)
 	draw_polygon(
 		PackedVector2Array([
-			Vector2(-1*Utilities.GRID_WIDTH/4.0, Utilities.GRID_HEIGHT), Vector2(Utilities.GRID_WIDTH/4.0, Utilities.GRID_HEIGHT),
-			Vector2(Utilities.GRID_WIDTH/4.0, -1*Utilities.GRID_HEIGHT), Vector2(-1*Utilities.GRID_WIDTH/4.0, -1*Utilities.GRID_HEIGHT)  ] 
+			Vector2(-1*Utilities.GRID_WIDTH/4.0, height), Vector2(Utilities.GRID_WIDTH/4.0, height),
+			Vector2(Utilities.GRID_WIDTH/4.0, -1* height), Vector2(-1*Utilities.GRID_WIDTH/4.0, -1*height)  ] 
 			),
 		[Color.TAN]
 	)
@@ -155,6 +153,8 @@ func _find_temp_match_door() -> Door: # going to have a real match door at some 
 func __door_match_filter(potental_door: Door) -> bool:
 	if potental_door._is_stairs != _is_stairs:
 		return false
+	if potental_door._is_car_garage != _is_car_garage:
+		return false
 	if potental_door.parent_room == parent_room: # no looping into self
 		return false
 	if potental_door.parent_room.get_room_type() != get_connected_room_type():  # door is for the wrong kind of room
@@ -181,6 +181,6 @@ func _door_setup_check() -> void:
 		if _true_partner_door._true_partner_door != self:
 			text += "my true partner does not point back at me: _true_partner_door._true_partner_door = " 
 			text += str(_true_partner_door)
-			
-	printerr(self, text)
+	if text.length() >= 4:
+		printerr(self, text)
 	
