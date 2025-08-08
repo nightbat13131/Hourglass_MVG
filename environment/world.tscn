@@ -9,9 +9,9 @@
 [ext_resource type="Script" uid="uid://573m6iy7bl4d" path="res://environment/room_organizer.gd" id="7_7yx4j"]
 [ext_resource type="TileSet" uid="uid://c0anbmkdy3uqs" path="res://images/inside_48.tres" id="7_50k4n"]
 [ext_resource type="PackedScene" uid="uid://begcfvth2yy3j" path="res://character/character.tscn" id="7_pdpkf"]
-[ext_resource type="Script" uid="uid://byeij0w0ee843" path="res://environment/interactives/interaction_manager_room.gd" id="9_m5jkx"]
 [ext_resource type="TileSet" uid="uid://cku6f01u2jpd2" path="res://images/props_48.tres" id="9_pdpkf"]
 [ext_resource type="PackedScene" uid="uid://bc26gcqpb8su" path="res://environment/interactives/refregerator.tscn" id="10_nn6gk"]
+[ext_resource type="PackedScene" uid="uid://ddbosm2mm5n4e" path="res://environment/interactives/blondie.tscn" id="10_pdpkf"]
 [ext_resource type="PackedScene" uid="uid://dujlg4f48blgb" path="res://environment/interactives/stove_sau.tscn" id="11_fxqaf"]
 
 [sub_resource type="Gradient" id="Gradient_5sfe2"]
@@ -29,14 +29,13 @@ fill_to = Vector2(0.5, 0)
 [node name="World" type="Node2D" node_paths=PackedStringArray("initial_room")]
 script = ExtResource("1_ktyio")
 walking_mode = ExtResource("2_50k4n")
-initial_room = NodePath("Sausalito/Down/Kitchen_sau")
+initial_room = NodePath("Sausalito/Down/Hallway_Green_Sausalito_down")
 
 [node name="DebugLayer" parent="." instance=ExtResource("3_7yx4j")]
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 light_mask = 3
 visibility_layer = 3
 color = Color(0.201527, 0.201527, 0.201527, 1)
@@ -93,6 +92,7 @@ _true_partner_door = NodePath("../../Sausalito/Down/Bedroom_GreenDown/D_Sau_down
 script = ExtResource("7_7yx4j")
 
 [node name="Up" type="Node2D" parent="Sausalito"]
+visible = false
 script = ExtResource("7_7yx4j")
 
 [node name="Hallway_Green_Sausalito_up" type="TileMapLayer" parent="Sausalito/Up"]
@@ -205,6 +205,9 @@ rotation = 3.14159
 _true_partner_door = NodePath("../../../Up/Hallway_Green_Sausalito_up/S_Sau_Up_Hall_Hall")
 _is_stairs = true
 
+[node name="Blondie" parent="Sausalito/Down/Hallway_Green_Sausalito_down" instance=ExtResource("10_pdpkf")]
+position = Vector2(134, -179)
+
 [node name="Bedroom_GreenDown" type="TileMapLayer" parent="Sausalito/Down"]
 position = Vector2(329, -527)
 tile_map_data = PackedByteArray("AAD8/wMAAgABAAAAAAD7/wMAAgAAAAQAAAD7/wIAAgAGAAEAAAD7/wEAAgAGAAEAAAD7/wAAAgAAAAEAAAD7////AgAAAAEAAAD7//7/AgAGAAEAAAD7//3/AgAGAAEAAAD7//r/AgABAAAAAAD7//n/AgAGAAEAAAD7//j/AgAEAAQAAAD8//j/AgAFAAAAAAD9//j/AgAFAAAAAAD+//j/AgAFAAQAAAD///j/AgAFAAQAAAAAAPj/AgAFAAQAAAABAPj/AgAFAAAAAAACAPj/AgAFAAAAAAADAPj/AgAFAAQAAAAEAPj/AgAFAAAAAAAFAPj/AgAFAAAAAAAGAPj/AgABAAQAAAD//wMAAgAAAAQAAAAAAAMAAgAFAAAAAAABAAMAAgAFAAQAAAACAAMAAgAFAAAAAAADAAMAAgAFAAQAAAAEAAMAAgAFAAAAAAAFAAMAAgAFAAQAAAAGAAMAAgAGAAQAAAAGAAIAAgAGAAEAAAAGAP//AgAGAAQAAAAGAP7/AgAGAAEAAAAGAP3/AgAAAAEAAAAGAPz/AgAGAAEAAAAGAPv/AgAAAAEAAAAGAPr/AgAGAAEAAAAGAPn/AgAAAAEAAAD+/wMABgAFAAMAAAD+/wIABgADAAMAAAD9/wMABgABAAMAAAD9/wIABgACAAMAAAD8//z/BgACAAMAAAD8//v/BgACAAEAAAD7//z/BgABAAMAAAD7//v/BgABAAEAAAAGAAEABgAFAAMAAAAGAAAABgAFAAEAAAAFAAEABgADAAMAAAAFAAAABgADAAEAAAAFAAIABgAFAAMAAAAFAP//BgADAAAAAAAFAP7/BgADAAAAAAAFAP3/BgADAAAAAAAFAPz/BgADAAAAAAAFAPv/BgADAAAAAAAFAPr/BgADAAAAAAAFAPn/BgAFAAEAAAAEAAIABgAEAAMAAAAEAAEABgACAAIAAAAEAAAABgACAAIAAAAEAP//BgACAAIAAAAEAP7/BgACAAIAAAAEAP3/BgACAAIAAAAEAPz/BgACAAIAAAAEAPv/BgACAAIAAAAEAPr/BgACAAIAAAAEAPn/BgAEAAEAAAADAAIABgAEAAMAAAADAAEABgACAAIAAAADAAAABgACAAIAAAADAP//BgACAAIAAAADAP7/BgACAAIAAAADAP3/BgACAAIAAAADAPz/BgACAAIAAAADAPv/BgACAAIAAAADAPr/BgACAAIAAAADAPn/BgAEAAEAAAACAAIABgAEAAMAAAACAAEABgACAAIAAAACAAAABgACAAIAAAACAP//BgACAAIAAAACAP7/BgACAAIAAAACAP3/BgACAAIAAAACAPz/BgACAAIAAAACAPv/BgACAAIAAAACAPr/BgACAAIAAAACAPn/BgAEAAEAAAABAAIABgAEAAMAAAABAAEABgACAAIAAAABAAAABgACAAIAAAABAP//BgACAAIAAAABAP7/BgACAAIAAAABAP3/BgACAAIAAAABAPz/BgACAAIAAAABAPv/BgACAAIAAAABAPr/BgACAAIAAAABAPn/BgAEAAEAAAAAAAIABgAEAAMAAAAAAAEABgACAAIAAAAAAAAABgACAAIAAAAAAP//BgACAAIAAAAAAP7/BgACAAIAAAAAAP3/BgACAAIAAAAAAPz/BgACAAIAAAAAAPv/BgACAAIAAAAAAPr/BgACAAIAAAAAAPn/BgAEAAEAAAD//wIABgAEAAMAAAD//wEABgACAAIAAAD//wAABgACAAIAAAD/////BgACAAIAAAD///7/BgACAAIAAAD///3/BgACAAIAAAD///z/BgACAAIAAAD///v/BgACAAIAAAD///r/BgACAAIAAAD///n/BgAEAAEAAAD+/wEABgACAAIAAAD+/wAABgACAAIAAAD+////BgACAAIAAAD+//7/BgACAAIAAAD+//3/BgACAAIAAAD+//z/BgACAAIAAAD+//v/BgACAAIAAAD+//r/BgACAAIAAAD+//n/BgAEAAEAAAD9/wEABgACAAIAAAD9/wAABgACAAIAAAD9////BgACAAIAAAD9//7/BgACAAIAAAD9//3/BgACAAIAAAD9//z/BgACAAIAAAD9//v/BgACAAIAAAD9//r/BgACAAIAAAD9//n/BgAEAAEAAAD8/wIABgABAAMAAAD8/wEABgACAAAAAAD8/wAABgACAAAAAAD8////BgACAAAAAAD8//7/BgACAAAAAAD8//3/BgACAAAAAAD8//r/BgACAAAAAAD8//n/BgABAAEAAAA=")
@@ -254,14 +257,11 @@ position = Vector2(-96, -288)
 rotation = -1.5708
 _true_partner_door = NodePath("../../Bathroom_GreenDown/D_Sau_down_bath_kitch")
 
-[node name="Interactions" type="Node2D" parent="Sausalito/Down/Kitchen_sau"]
-script = ExtResource("9_m5jkx")
-
-[node name="Refregerator" parent="Sausalito/Down/Kitchen_sau/Interactions" instance=ExtResource("10_nn6gk")]
+[node name="Refregerator" parent="Sausalito/Down/Kitchen_sau" instance=ExtResource("10_nn6gk")]
 position = Vector2(-262, -121)
 rotation = -1.5708
 
-[node name="Stove_sau" parent="Sausalito/Down/Kitchen_sau/Interactions" instance=ExtResource("11_fxqaf")]
+[node name="Stove_sau" parent="Sausalito/Down/Kitchen_sau" instance=ExtResource("11_fxqaf")]
 position = Vector2(-12, -22)
 rotation = 1.5708
 
@@ -517,7 +517,7 @@ rotation = 3.14159
 _true_partner_door = NodePath("../../Hallway_BrownDown/D_Del_Down_Hall_Bath")
 
 [node name="Character" parent="." instance=ExtResource("7_pdpkf")]
-position = Vector2(-209, -46)
+position = Vector2(437, -215)
 
 [node name="PointLight2D" type="PointLight2D" parent="Character"]
 light_mask = 3

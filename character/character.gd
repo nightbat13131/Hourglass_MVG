@@ -6,6 +6,8 @@ var _speed := _max_speed
 var _facing_direction := Vector2.LEFT
 var _interactive : Interactive
 
+static var inventory : Array[InteractionResource]
+
 @export var move: GUIDEAction
 @export var interact: GUIDEAction
 
@@ -33,7 +35,6 @@ func _process(delta: float) -> void:
 		if has_interaction():
 			#print("do action")
 			_interactive.do_action()
-	
 
 func has_interaction() -> bool:
 	return !_interactive == null
@@ -47,6 +48,7 @@ func connect_action(thing: Interactive) -> void:
 		if _interactive != thing:
 			clear_action()
 	_interactive = thing
+	_interactive.character_entered()
 	if !_interactive.action_updated.is_connected(_on_action_updated):
 		_interactive.action_updated.connect(_on_action_updated)
 	_on_action_updated()
@@ -74,4 +76,12 @@ func set_action_label(text: String) -> void:
 		return
 	action_label.set_text(text)
 	action_label.set_visible(text.length() > 1)
-		
+
+static func pickup_item(thing: InteractionResource) -> void:
+	if inventory.has(thing):
+		printerr("Player already has ", thing)
+		return
+	inventory.append(thing)
+
+static func check_inventory(thing: InteractionResource) -> bool:
+	return inventory.has(thing)

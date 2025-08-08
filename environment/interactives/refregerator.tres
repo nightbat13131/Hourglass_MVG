@@ -4,10 +4,16 @@
 
 [resource]
 script = ExtResource("1_f7hgq")
-pre_text = "Sneak Step-Dad's Chocolate"
-pre_sprite_frame = Vector2i(0, 0)
-durring_text = "how has he not noticed?"
-durring_sprite_frame = Vector2i(0, 1)
-post_text = "really should stop doing that"
-post_sprite_frame = Vector2i(0, 0)
+interaction_type = 0
+initial_state = 0
+state_texts = Dictionary[int, String]({
+1: "how has he not noticed?",
+2: "really should stop doing that",
+3: "Sneak Step-Dad's Chocolate"
+})
+state_frame_cords = Dictionary[int, Vector2i]({
+0: Vector2i(0, 0),
+1: Vector2i(0, 1),
+2: Vector2i(0, 0)
+})
 metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"

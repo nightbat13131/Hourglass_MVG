@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="InteractionResource" load_steps=3 format=3 uid="uid://cu1npj4yun7a"]
+
+[ext_resource type="PackedScene" uid="uid://j88bucaux3qt" path="res://environment/interactives/inventory_icons/blondie_icon.tscn" id="1_50e2h"]
+[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="1_sfbjw"]
+
+[resource]
+script = ExtResource("1_sfbjw")
+interaction_type = 2
+initial_state = 0
+state_texts = Dictionary[int, String]({
+1: "Stuffed animal that hugs you back!",
+2: "\"Best fifty cents I ever spent\" - Mom",
+3: "Take with you",
+10: "\"Best fifty cents I ever spent\" - Mom"
+})
+state_frame_cords = Dictionary[int, Vector2i]({})
+inventory_icon = ExtResource("1_50e2h")
+metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"

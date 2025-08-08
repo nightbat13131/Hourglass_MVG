@@ -10,14 +10,18 @@ static var _all_doors : Array[Door]
 @export var _is_stairs := false
 @export var _is_car_garage := false
 
-
+@export var _shimmy_curve : Curve
 
 @onready var area_player_average: Area2D = %Area_PlayerAverage
 @onready var area_2d_close_door_inside: Area2D = %Area2D_close_door_inside
 @onready var area_2d_close_door_outside: Area2D = %Area2D_close_door_outside
 @onready var area_2d_sleep_helper: Area2D = %Area2D_sleep_helper
+@onready var area_2d_visual_helper: Area2D = %Area2D_visual_helper
 
 @onready var garage_image: TextureRect = %GarageImage
+@onready var door_image: TextureRect = %DoorImage
+
+var _image 
 
 var parent_room : Room
 var _temp_partner_door: Door
@@ -45,15 +49,19 @@ func _ready() -> void:
 	area_2d_close_door_outside.body_entered.connect(_on_body_change.bind(true, area_2d_close_door_outside))
 	area_2d_close_door_outside.body_exited.connect(_on_body_change.bind(false, area_2d_close_door_outside))
 	area_2d_sleep_helper.body_exited.connect(_on_area_2d_sleep_helper_body_exited)
+	area_2d_visual_helper.body_entered.connect(_on_area_2d_visual_helper_body_entered)
 	if _is_car_garage:
+		door_image.queue_free()
+		_image = garage_image
 		var coll_height: float
-		for each_collision_shape : CollisionShape2D in [ %CollisionShape_Player, %CollisionShape2D_inside, %CollisionShape2D_outside, %CollisionShape2D_Sleep]:
+		for each_collision_shape : CollisionShape2D in [ %CollisionShape_Player, %CollisionShape2D_inside, %CollisionShape2D_outside, %CollisionShape2D_Sleep, %CollisionShape2D]:
 			# assuming all rectangles
 			each_collision_shape.set_shape( each_collision_shape.get_shape().duplicate())
 			coll_height = each_collision_shape.get_shape().size.y
 			each_collision_shape.get_shape().size.y = coll_height *2
 	else: 
 		garage_image.queue_free()
+		_image = door_image
 
 func get_connected_room_type() -> Room.RoomTypes:
 	if _true_partner_door != null:
@@ -70,6 +78,8 @@ func get_parent_room_type() -> Room.RoomTypes:
 		return Room.RoomTypes.None
 
 func _draw() -> void:
+	if !Engine.is_editor_hint():
+		return
 	var height = Utilities.GRID_HEIGHT * ( 2 if _is_car_garage else 1)
 	draw_polygon(
 		PackedVector2Array([
@@ -78,9 +88,9 @@ func _draw() -> void:
 			),
 		[Color.TAN]
 	)
-	if Engine.is_editor_hint():
-		draw_line(Vector2.ZERO, Vector2.from_angle( 0 * (PI/2.0) )*Utilities.GRID_WIDTH*3, Color.WHEAT, 3.0)
-		draw_line(Vector2.from_angle( 1 * (PI/2.0) )*Utilities.GRID_WIDTH, Vector2.from_angle( -1 * (PI/2.0) )*Utilities.GRID_WIDTH, Color.BLUE, 2.0)
+	
+	draw_line(Vector2.ZERO, Vector2.from_angle( 0 * (PI/2.0) )*Utilities.GRID_WIDTH*3, Color.WHEAT, 3.0)
+	draw_line(Vector2.from_angle( 1 * (PI/2.0) )*Utilities.GRID_WIDTH, Vector2.from_angle( -1 * (PI/2.0) )*Utilities.GRID_WIDTH, Color.BLUE, 2.0)
 
 func _on_area_entered(_area: Area2D) -> void:
 	_open_door()
@@ -169,9 +179,6 @@ func __door_match_filter(potental_door: Door) -> bool:
 
 func _on_area_2d_sleep_helper_body_exited(body: Node2D) -> void:
 	if body is Player:
-		print(self, "sleep area left")
-		#if _is_asleep:
-		print("turning off sleep for", self , _is_asleep)
 		set_is_asleep(false)
 
 func set_is_asleep(is_asleep: bool) -> void:
@@ -189,4 +196,19 @@ func _door_setup_check() -> void:
 			text += str(_true_partner_door)
 	if text.length() >= 4:
 		printerr(self, text)
-	
+
+func _on_area_2d_visual_helper_body_entered(body: Node2D) -> void:
+	# shimmy x - this does not look good yet - something other than shimmy?
+	# the current language is white outline - likely need to make that work
+	# print(_on_area_2d_visual_helper_body_entered)
+	if body is Player:
+		var tween = self.create_tween()
+		var y = _image.position.y
+		var start_x = _image.position.x
+		tween.set_trans(Tween.TRANS_LINEAR)
+		tween.tween_method(__shimmy_helper.bind(y, start_x), 0.0, 1.0, 1.0)
+
+func __shimmy_helper(domain: float, y: float, start_x: float) -> void:
+	var shimmy_range := 10.0
+	var x = start_x + (_shimmy_curve.sample(domain) * shimmy_range)
+	_image.set_position(Vector2(x, y))

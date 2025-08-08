@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://j88bucaux3qt"]
+
+[ext_resource type="Texture2D" uid="uid://bctp60ompt3om" path="res://images/props/Blondie_icon.png" id="1_b5wow"]
+
+[node name="Sprite2D" type="TextureRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 16.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_b5wow")
+stretch_mode = 3
