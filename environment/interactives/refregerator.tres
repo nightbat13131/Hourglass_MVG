@@ -1,9 +1,42 @@
-[gd_resource type="Resource" script_class="InteractionResource" load_steps=2 format=3 uid="uid://haskggo5b1lb"]
+[gd_resource type="Resource" script_class="InteractionResource" load_steps=6 format=3 uid="uid://haskggo5b1lb"]
 
+[ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="1_4y12p"]
 [ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="1_f7hgq"]
+
+[sub_resource type="Resource" id="Resource_4y12p"]
+script = ExtResource("1_4y12p")
+_text = "Sneak Step-Dad's Chocolate"
+_include_action_hint = true
+_is_sprit_visible = true
+_sprite_frame_cord = Vector2i(0, 0)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_0uv0i"]
+script = ExtResource("1_4y12p")
+_text = "how has he not noticed?"
+_include_action_hint = false
+_is_sprit_visible = true
+_sprite_frame_cord = Vector2i(0, 1)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_tdu50"]
+script = ExtResource("1_4y12p")
+_text = "really should stop doing that"
+_include_action_hint = false
+_is_sprit_visible = true
+_sprite_frame_cord = Vector2i(0, 0)
+_highlight_color = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
 [resource]
 script = ExtResource("1_f7hgq")
+_state_details = Dictionary[int, ExtResource("1_4y12p")]({
+2: SubResource("Resource_0uv0i"),
+3: SubResource("Resource_4y12p"),
+12: SubResource("Resource_tdu50")
+})
 interaction_type = 0
 initial_state = 0
 state_texts = Dictionary[int, String]({
