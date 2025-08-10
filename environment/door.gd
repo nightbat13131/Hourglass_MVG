@@ -38,7 +38,7 @@ func _ready() -> void:
 	Utilities.snap_to_interval(self, 2)
 	if Engine.is_editor_hint():
 		return
-	
+	set_modulate(Color.WHITE)
 	_door_setup_check()
 	
 	_all_doors.append(self)

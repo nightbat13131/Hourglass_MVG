@@ -2,20 +2,26 @@ class_name Interactive extends StaticBody2D
 
 signal action_updated
 
+const SHADER_SCRIPT := 'uid://22opvb4ikfpf'
+const SPRITE_MODULATE := 'modulate_color'
+const SPRITE_OUTLINE := 'outline_color'
+const SPRITE_REGION := 'texture_region'
+
 @export var _res : InteractionResource
 var sprite_2d: Sprite2D # sprite sheet
-var texture_rect: TextureRect # white highlight background
+var shader : Material # Shader
 
 func _ready() -> void:
-	
-	if sprite_2d == null or texture_rect == null :
+	if sprite_2d == null: # or texture_rect == null:
 		for each_child in get_children():
 			if each_child is Sprite2D:
 				sprite_2d = each_child
-			elif each_child is TextureRect:
-				texture_rect = each_child
+				break
+			#elif each_child is TextureRect:
+			#	texture_rect = each_child
+	_init_shader()
 	if _res:
-		_res = _res.duplicate()
+		# _res = _res.duplicate() # was testing repeated item
 		_res.state_changed.connect(_on_res_state_changed)
 	else: 
 		printerr("No resource for ", self)
@@ -25,8 +31,8 @@ func get_text() -> String: return _res.get_text()
 
 func update_visual() -> void:
 	sprite_2d.set_frame_coords(_res.get_frame_cords())
-	sprite_2d.set_modulate(_res.get_sprite_color())
-	texture_rect.set_modulate(_res.get_highlight_color())
+	shader.set_shader_parameter(SPRITE_MODULATE, _res.get_sprite_color())
+	shader.set_shader_parameter(SPRITE_OUTLINE, _res.get_highlight_color())
 
 func do_action() -> void:
 	_res.do_action()
@@ -41,3 +47,12 @@ func character_left() -> void:
 func character_entered() -> void:
 	# _res.character_entered()
 	pass
+
+func _init_shader() -> void:
+	if !sprite_2d:
+		return
+	if !sprite_2d.get_material():
+		sprite_2d.set_material(ShaderMaterial.new())
+	sprite_2d.get_material().set_shader(load(SHADER_SCRIPT))
+	shader = sprite_2d.get_material()#.get_shader()
+	shader.set_shader_parameter('outline_width', 3.0)

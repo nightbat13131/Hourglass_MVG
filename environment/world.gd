@@ -5,4 +5,5 @@ extends Node2D
 
 func _ready() -> void:
 	GUIDE.enable_mapping_context(walking_mode)
+	initial_room.set_global_position(Vector2.ZERO)
 	initial_room.activate(true)

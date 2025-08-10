@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw4ruasic4hdy"
-path="res://.godot/imported/Alex_idle_16x16.png-4ad499211f3b2c58ab0f385f0121eb4f.ctex"
+uid="uid://dy42ht30dquml"
+path="res://.godot/imported/Blondie_sprite.png-400502346024fdf4bbdcfbaf0c934d16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Alex_idle_16x16.png"
-dest_files=["res://.godot/imported/Alex_idle_16x16.png-4ad499211f3b2c58ab0f385f0121eb4f.ctex"]
+source_file="res://images/actions/Blondie_sprite.png"
+dest_files=["res://.godot/imported/Blondie_sprite.png-400502346024fdf4bbdcfbaf0c934d16.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy42ht30dquml"
-path="res://.godot/imported/Blondie_sprite.png-5e79acdf80d7cbbbb96feca4968d98c4.ctex"
+uid="uid://bctp60ompt3om"
+path="res://.godot/imported/Blondie_icon.png-53c9fad39bd963a65d4930875d191e62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/props/Blondie_sprite.png"
-dest_files=["res://.godot/imported/Blondie_sprite.png-5e79acdf80d7cbbbb96feca4968d98c4.ctex"]
+source_file="res://images/actions/Blondie_icon.png"
+dest_files=["res://.godot/imported/Blondie_icon.png-53c9fad39bd963a65d4930875d191e62.ctex"]
 
 [params]
 

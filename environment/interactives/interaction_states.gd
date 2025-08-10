@@ -6,8 +6,8 @@ class_name InteractionStates extends Resource
 @export var _highlight_color := Color.WHITE
 ## InventoryItem classed PackedScene
 
-@export var _item_recive: PackedScene
-@export var _item_give: PackedScene
+@export var _needs_item: PackedScene
+@export var _gives_item: PackedScene
 
 
 func get_text() -> String: return _text
@@ -19,9 +19,9 @@ func get_sprite_frame_cord() -> Vector2i: return _sprite_frame_cord
 func get_highlight_color() -> Color: return _highlight_color
 
 func try_action() -> bool:
-	if _item_give:
-		Inventory.pickup_item(_item_give)
+	if _gives_item:
+		Inventory.pickup_item(_gives_item)
 		return true
-	elif _item_recive: 
-		return Inventory.check_inventory(_item_recive)
+	elif _needs_item: 
+		return Inventory.check_inventory(_needs_item)
 	return true

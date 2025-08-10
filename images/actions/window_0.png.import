@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm8rdyvxk7fkd"
-path="res://.godot/imported/stiars_1_48x48_limezu_hay.png-3d4c436fbd3bcc288745e85000a08264.ctex"
+uid="uid://domqdwlmh2rsg"
+path="res://.godot/imported/window_0.png-5e4a599df24ed87e30f9240725657dd2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/tilemaps/stiars_1_48x48_limezu_hay.png"
-dest_files=["res://.godot/imported/stiars_1_48x48_limezu_hay.png-3d4c436fbd3bcc288745e85000a08264.ctex"]
+source_file="res://images/actions/window_0.png"
+dest_files=["res://.godot/imported/window_0.png-5e4a599df24ed87e30f9240725657dd2.ctex"]
 
 [params]
 

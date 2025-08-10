@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://coa2v04n61bfw"]
+
+[ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_bibk6"]
+[ext_resource type="PackedScene" uid="uid://bwmgl3delquob" path="res://environment/interactives/inventory_items/deer_picture.tscn" id="2_vnfmw"]
+[ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="3_bmjwk"]
+[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="4_vy2jq"]
+[ext_resource type="Texture2D" uid="uid://p1yy20s35qk4" path="res://images/actions/gran_bed.png" id="5_bibk6"]
+
+[sub_resource type="Resource" id="Resource_vo3ge"]
+script = ExtResource("3_bmjwk")
+_text = "Wish I could have raise the bed high 
+enough for her to see herself."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_2qgsw"]
+script = ExtResource("3_bmjwk")
+_text = "Trapped in this litte room."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+_needs_item = ExtResource("2_vnfmw")
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_jwon8"]
+script = ExtResource("3_bmjwk")
+_text = "Can't even see out the window. "
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_5kios"]
+script = ExtResource("3_bmjwk")
+_text = "~I wish I could remember what she said exactly~
+~I just keep with me that the picture made her happy~"
+_sprite_frame_cord = Vector2i(1, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_oenle"]
+script = ExtResource("4_vy2jq")
+_state_details = Dictionary[int, Object]({
+2: SubResource("Resource_vo3ge"),
+3: SubResource("Resource_2qgsw"),
+11: SubResource("Resource_jwon8"),
+12: SubResource("Resource_5kios")
+})
+metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bibk6"]
+size = Vector2(55, 100)
+
+[node name="GramaInBed" type="StaticBody2D"]
+script = ExtResource("1_bibk6")
+_res = SubResource("Resource_oenle")
+metadata/_custom_type_script = "uid://b27dj4q5es4ku"
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_bibk6")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_bibk6")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwmgl3delquob"]
+
+[ext_resource type="Texture2D" uid="uid://cdylveu4pap1n" path="res://images/actions/deer_icon.png" id="1_hd5lc"]
+[ext_resource type="Script" uid="uid://v7kmtg1c8sbu" path="res://environment/interactives/inventory_items/inventory_item.gd" id="2_3vn0e"]
+
+[node name="Sprite2D" type="TextureRect"]
+offset_right = 15.0
+offset_bottom = 15.0
+texture = ExtResource("1_hd5lc")
+stretch_mode = 2
+script = ExtResource("2_3vn0e")

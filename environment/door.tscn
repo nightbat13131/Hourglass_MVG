@@ -27,6 +27,7 @@ size = Vector2(48, 120)
 size = Vector2(154, 106)
 
 [node name="Door" type="Node2D"]
+modulate = Color(1, 1, 1, 0.145098)
 script = ExtResource("1_05hnu")
 _shimmy_curve = SubResource("Curve_are4n")
 

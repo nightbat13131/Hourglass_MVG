@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cscf5b8b2fyw5"
-path="res://.godot/imported/round_fade_64.png-6d25828b4b8cfe2195fa95ce8d962cc0.ctex"
+uid="uid://p1yy20s35qk4"
+path="res://.godot/imported/gran_bed.png-b0dda7efa9dafb8b439e5354756bdf33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/round_fade_64.png"
-dest_files=["res://.godot/imported/round_fade_64.png-6d25828b4b8cfe2195fa95ce8d962cc0.ctex"]
+source_file="res://images/actions/gran_bed.png"
+dest_files=["res://.godot/imported/gran_bed.png-b0dda7efa9dafb8b439e5354756bdf33.ctex"]
 
 [params]
 

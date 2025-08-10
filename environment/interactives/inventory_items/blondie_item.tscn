@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://j88bucaux3qt"]
 
-[ext_resource type="Texture2D" uid="uid://bctp60ompt3om" path="res://images/props/Blondie_icon.png" id="1_ho6cw"]
+[ext_resource type="Texture2D" uid="uid://bctp60ompt3om" path="res://images/actions/Blondie_icon.png" id="1_ho6cw"]
 [ext_resource type="Script" uid="uid://v7kmtg1c8sbu" path="res://environment/interactives/inventory_items/inventory_item.gd" id="2_hqm6w"]
 
 [node name="Sprite2D" type="TextureRect"]
