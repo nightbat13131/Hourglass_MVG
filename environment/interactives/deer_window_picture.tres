@@ -4,6 +4,14 @@
 [ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="1_pf52c"]
 [ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="1_phmx8"]
 
+[sub_resource type="Resource" id="Resource_4c834"]
+script = ExtResource("1_phmx8")
+_text = "Good, got a pic before they ran off."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
 [sub_resource type="Resource" id="Resource_48uv4"]
 script = ExtResource("1_phmx8")
 _text = "Deer in the yard!"
@@ -11,14 +19,6 @@ _sprite_frame_cord = Vector2i(0, 0)
 _sprite_color = Color(1, 1, 1, 1)
 _highlight_color = Color(1, 1, 1, 1)
 _gives_item = ExtResource("1_48uv4")
-metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
-
-[sub_resource type="Resource" id="Resource_4c834"]
-script = ExtResource("1_phmx8")
-_text = "Good, got a pic before they ran off."
-_sprite_frame_cord = Vector2i(0, 0)
-_sprite_color = Color(1, 1, 1, 1)
-_highlight_color = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
 [sub_resource type="Resource" id="Resource_ob8wd"]

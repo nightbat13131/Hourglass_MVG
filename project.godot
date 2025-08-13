@@ -11,14 +11,13 @@ config_version=5
 [application]
 
 config/name="HourglassMVG"
-run/main_scene="uid://pdjjwbe2agic"
+run/main_scene="uid://jxhstfiknw3y"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GUIDE="*res://addons/guide/guide.gd"
-_SoundManager="*res://arcitecture/sound_manager.tscn"
 
 [display]
 

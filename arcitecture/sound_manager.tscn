@@ -1,18 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://mbu5twqa3bmx"]
 
 [ext_resource type="Script" uid="uid://bk5k3yur05wt" path="res://arcitecture/sound_manager.gd" id="1_cltuo"]
-[ext_resource type="AudioStream" uid="uid://bu1d56db0elw6" path="res://sounds/Daniel McGuinness - Hourglass.mp3" id="2_8ua8u"]
+[ext_resource type="AudioStream" uid="uid://bu1d56db0elw6" path="res://sounds/daniemcguinness_hourglass.mp3" id="2_8ua8u"]
 
 [node name="SoundManager" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_cltuo")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_8ua8u")
 autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [node name="MarginContainer" type="CenterContainer" parent="."]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,6 +28,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Label_Header" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 theme_type_variation = &"Header"
 text = "Sound Stuff"
@@ -38,20 +40,33 @@ text = "Master"
 horizontal_alignment = 1
 
 [node name="HSlider_Master" type="HSlider" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+max_value = 1.0
+step = 0.1
 
 [node name="Label3" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Music"
 horizontal_alignment = 1
 
 [node name="HSlider_Music" type="HSlider" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
+max_value = 1.0
+step = 0.1
 
 [node name="Label4" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Sound Effects"
 horizontal_alignment = 1
 
 [node name="HSlider_SFX" type="HSlider" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
+max_value = 1.0
+step = 0.1

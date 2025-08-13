@@ -32,7 +32,6 @@ texture = SubResource("AtlasTexture_wk18p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_sqm4f")
-hframes = 2
 region_rect = Rect2(0, 0, 51, 69)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

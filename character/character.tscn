@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://begcfvth2yy3j"]
+[gd_scene load_steps=25 format=3 uid="uid://begcfvth2yy3j"]
 
 [ext_resource type="Script" uid="uid://ccms35rsddrss" path="res://character/character.gd" id="1_yf0e5"]
 [ext_resource type="Resource" uid="uid://dlmievewarnnb" path="res://guide/move.tres" id="2_ugqs2"]
 [ext_resource type="Resource" uid="uid://ci736fk7cvhpm" path="res://guide/interact.tres" id="3_hx151"]
-[ext_resource type="Texture2D" uid="uid://ctscsiw1ueh8d" path="res://images/hourglass2.png" id="3_ugqs2"]
+[ext_resource type="Texture2D" uid="uid://ctscsiw1ueh8d" path="res://images/player/hourglass2.png" id="3_ugqs2"]
+[ext_resource type="AnimationLibrary" uid="uid://tf1dbk3w1eee" path="res://character/player_animationlibrary.tres" id="5_0rvpn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hx151"]
+light_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hx151"]
 atlas = ExtResource("3_ugqs2")
@@ -13,37 +17,103 @@ radius = 16.0
 height = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ugqs2"]
-radius = 72.0
+radius = 60.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ugqs2"]
 light_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0rvpn"]
+animation = &"idlev"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o6jyn"]
+animation = &"idle^"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tgjim"]
+animation = &"idle>"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wy5t8"]
+animation = &"idle<"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_dy06j"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_0rvpn")
+blend_point_0/pos = Vector2(0, 0.9)
+blend_point_1/node = SubResource("AnimationNodeAnimation_o6jyn")
+blend_point_1/pos = Vector2(0, -0.9)
+blend_point_2/node = SubResource("AnimationNodeAnimation_tgjim")
+blend_point_2/pos = Vector2(0.9, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_wy5t8")
+blend_point_3/pos = Vector2(-0.9, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qkjfd"]
+animation = &"walkv"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gx66j"]
+animation = &"walk^"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8brn5"]
+animation = &"walk>"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b4qc5"]
+animation = &"walk<"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_hd715"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_qkjfd")
+blend_point_0/pos = Vector2(0, 0.9)
+blend_point_1/node = SubResource("AnimationNodeAnimation_gx66j")
+blend_point_1/pos = Vector2(0, -0.9)
+blend_point_2/node = SubResource("AnimationNodeAnimation_8brn5")
+blend_point_2/pos = Vector2(0.9, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_b4qc5")
+blend_point_3/pos = Vector2(-0.9, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0rvpn"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o6jyn"]
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tgjim"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0rvpn"]
+states/Start/position = Vector2(180, 84)
+states/idle/node = SubResource("AnimationNodeBlendSpace2D_dy06j")
+states/idle/position = Vector2(336, 118)
+states/walk/node = SubResource("AnimationNodeBlendSpace2D_hd715")
+states/walk/position = Vector2(600, 91)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_0rvpn"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_o6jyn"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_tgjim")]
+
 [node name="Character" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_yf0e5")
 move = ExtResource("2_ugqs2")
 interact = ExtResource("3_hx151")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_hx151")
 position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_hx151")
 hframes = 56
 vframes = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-2, 13)
+position = Vector2(0, 16)
 shape = SubResource("CapsuleShape2D_0rvpn")
 debug_color = Color(0.823163, 0.906817, 0.948562, 0.419608)
 
 [node name="Area2D_Reach" type="Area2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -5)
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Reach"]
-visible = false
 shape = SubResource("CircleShape2D_ugqs2")
 debug_color = Color(0.815552, 0.33808, 0.590092, 0.42)
 
@@ -79,3 +149,28 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "Action Text"
 horizontal_alignment = 1
+
+[node name="debug_text" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -21.0
+offset_top = -103.0
+offset_right = 19.0
+offset_bottom = -80.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
+root_node = NodePath("../AnimationTree")
+libraries = {
+&"": ExtResource("5_0rvpn")
+}
+autoplay = "idlev"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath(".")
+tree_root = SubResource("AnimationNodeStateMachine_0rvpn")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_idle = true
+parameters/conditions/is_walking = false
+parameters/idle/blend_position = 0.432495
+parameters/walk/blend_position = Vector2(0, 0)

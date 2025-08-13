@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://jxhstfiknw3y"]
+
+[ext_resource type="PackedScene" uid="uid://pdjjwbe2agic" path="res://environment/world.tscn" id="1_g1nip"]
+[ext_resource type="Script" uid="uid://734mate0na4n" path="res://arcitecture/game_root.gd" id="1_thas4"]
+[ext_resource type="Resource" uid="uid://bxekjvs41vost" path="res://guide/walk_mode.tres" id="2_48amp"]
+[ext_resource type="PackedScene" uid="uid://mbu5twqa3bmx" path="res://arcitecture/sound_manager.tscn" id="3_48amp"]
+
+[node name="GameRoot" type="Node2D"]
+script = ExtResource("1_thas4")
+walking_mode = ExtResource("2_48amp")
+
+[node name="World" parent="." instance=ExtResource("1_g1nip")]
+unique_name_in_owner = true
+
+[node name="SoundManager" parent="." instance=ExtResource("3_48amp")]
+unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="SoundButton" type="Button" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 57.0
+offset_bottom = 31.0
+toggle_mode = true
+text = "Sound"

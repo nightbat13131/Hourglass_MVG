@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctscsiw1ueh8d"
-path="res://.godot/imported/hourglass2.png-037a0fea56781773698505d1b16314b6.ctex"
+uid="uid://pota0ca8mdpy"
+path="res://.godot/imported/propbs_Bathroom_48x48.png-a1ff7142ed78bf1212725475bd41aa5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/hourglass2.png"
-dest_files=["res://.godot/imported/hourglass2.png-037a0fea56781773698505d1b16314b6.ctex"]
+source_file="res://images/props/propbs_Bathroom_48x48.png"
+dest_files=["res://.godot/imported/propbs_Bathroom_48x48.png-a1ff7142ed78bf1212725475bd41aa5d.ctex"]
 
 [params]
 
