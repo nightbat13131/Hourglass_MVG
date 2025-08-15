@@ -8,7 +8,7 @@ script = ExtResource("1_4y12p")
 _text = "how has he not noticed?"
 _sprite_frame_cord = Vector2i(0, 1)
 _sprite_color = Color(1, 1, 1, 1)
-_highlight_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0.5)
 metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
 [sub_resource type="Resource" id="Resource_4y12p"]

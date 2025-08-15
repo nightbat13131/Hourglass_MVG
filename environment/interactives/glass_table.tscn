@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyuy8205w8m4s"]
+
+[ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_jj0l2"]
+[ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="2_4ocwd"]
+[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="3_m5u10"]
+[ext_resource type="Texture2D" uid="uid://igkt0f0akdsk" path="res://images/actions/glass_table.png" id="4_6xbc2"]
+
+[sub_resource type="Resource" id="Resource_5kios"]
+script = ExtResource("2_4ocwd")
+_text = "Runing up and down the stairs I fell down the Glass table."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_oenle"]
+script = ExtResource("2_4ocwd")
+_text = "\"I don't care about the table are you okay?\" - Mom"
+_sprite_frame_cord = Vector2i(0, 1)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0.5)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_n8g2h"]
+script = ExtResource("2_4ocwd")
+_text = "i was suprised she wasn't mad"
+_sprite_frame_cord = Vector2i(0, 1)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_h7qof"]
+script = ExtResource("3_m5u10")
+_state_details = Dictionary[int, Object]({
+2: SubResource("Resource_oenle"),
+3: SubResource("Resource_5kios"),
+12: SubResource("Resource_n8g2h")
+})
+metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qgsw"]
+size = Vector2(95, 54)
+
+[node name="GlassTable" type="StaticBody2D"]
+script = ExtResource("1_jj0l2")
+_res = SubResource("Resource_h7qof")
+metadata/_custom_type_script = "uid://b27dj4q5es4ku"
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_6xbc2")
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -9)
+shape = SubResource("RectangleShape2D_2qgsw")

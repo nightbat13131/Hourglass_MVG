@@ -12,7 +12,7 @@ _text = "Wish I could have raise the bed high
 enough for her to see herself."
 _sprite_frame_cord = Vector2i(0, 0)
 _sprite_color = Color(1, 1, 1, 1)
-_highlight_color = Color(1, 1, 1, 1)
+_highlight_color = Color(0.249916, 0.355383, 0.829794, 0.501961)
 metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
 [sub_resource type="Resource" id="Resource_2qgsw"]

@@ -9,7 +9,7 @@ script = ExtResource("2_obufp")
 _text = "Stuffed animal that hugs you back!"
 _sprite_frame_cord = Vector2i(0, 0)
 _sprite_color = Color(1, 1, 1, 1)
-_highlight_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0.5)
 metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
 [sub_resource type="Resource" id="Resource_5in27"]

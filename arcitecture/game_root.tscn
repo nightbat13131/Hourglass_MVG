@@ -1,9 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://jxhstfiknw3y"]
+[gd_scene load_steps=10 format=3 uid="uid://jxhstfiknw3y"]
 
 [ext_resource type="PackedScene" uid="uid://pdjjwbe2agic" path="res://environment/world.tscn" id="1_g1nip"]
 [ext_resource type="Script" uid="uid://734mate0na4n" path="res://arcitecture/game_root.gd" id="1_thas4"]
 [ext_resource type="Resource" uid="uid://bxekjvs41vost" path="res://guide/walk_mode.tres" id="2_48amp"]
-[ext_resource type="PackedScene" uid="uid://mbu5twqa3bmx" path="res://arcitecture/sound_manager.tscn" id="3_48amp"]
+[ext_resource type="Script" uid="uid://dvhcgerockrdr" path="res://arcitecture/audio_manager.gd" id="4_48amp"]
+[ext_resource type="AudioStream" uid="uid://cwqyhnxflryqv" path="res://sounds/daniel_mcguinness_hourglass.wav" id="4_caop4"]
+[ext_resource type="Texture2D" uid="uid://nigs8xj6qlse" path="res://images/ui/sound_button_32x32.png" id="6_s4bvx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4thhm"]
+atlas = ExtResource("6_s4bvx")
+region = Rect2(0, 0, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1ihi"]
+atlas = ExtResource("6_s4bvx")
+region = Rect2(64, 0, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fphji"]
+atlas = ExtResource("6_s4bvx")
+region = Rect2(32, 0, 32, 34)
 
 [node name="GameRoot" type="Node2D"]
 script = ExtResource("1_thas4")
@@ -12,23 +26,55 @@ walking_mode = ExtResource("2_48amp")
 [node name="World" parent="." instance=ExtResource("1_g1nip")]
 unique_name_in_owner = true
 
-[node name="SoundManager" parent="." instance=ExtResource("3_48amp")]
-unique_name_in_owner = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
 
-[node name="SoundButton" type="Button" parent="CanvasLayer/Control"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Control"]
+stream = ExtResource("4_caop4")
+autoplay = true
+bus = &"Music"
+
+[node name="AudioManager" type="CenterContainer" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_48amp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/AudioManager"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/AudioManager/VBoxContainer"]
+layout_mode = 2
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="HSlider_master" type="HSlider" parent="CanvasLayer/Control/AudioManager/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+
+[node name="SoundButton" type="TextureButton" parent="CanvasLayer/Control"]
 unique_name_in_owner = true
 layout_mode = 1
 offset_right = 57.0
 offset_bottom = 31.0
+scale = Vector2(0.5, 0.5)
 toggle_mode = true
-text = "Sound"
+texture_normal = SubResource("AtlasTexture_4thhm")
+texture_pressed = SubResource("AtlasTexture_k1ihi")
+texture_hover = SubResource("AtlasTexture_fphji")

@@ -165,6 +165,7 @@ libraries = {
 &"": ExtResource("5_0rvpn")
 }
 autoplay = "idlev"
+speed_scale = 0.5
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath(".")
