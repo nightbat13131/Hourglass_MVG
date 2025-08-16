@@ -1,7 +1,7 @@
 class_name PointLight2D_Extended extends PointLight2D
 
 
-@export var color_scale : Gradient
+#@export var color_scale : Gradient
 static var _instance : PointLight2D_Extended
 
 var domain := 0.0:
@@ -20,7 +20,8 @@ func _ready() -> void:
 	#_color_from_gradiant()
 
 func _color_from_gradiant() -> void:
-	set_color(color_scale.sample(domain))
+	#set_color(color_scale.sample(domain))
+	set_energy(domain)
 
 static func update_domain(value: float) -> void:
 	if _instance:

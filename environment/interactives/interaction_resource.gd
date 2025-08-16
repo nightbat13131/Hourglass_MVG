@@ -37,6 +37,10 @@ func do_action() -> void:
 			set_state(States.ACTION_SUCCESS)
 		else: 
 			set_state(States.ACTION_FAILED)
+	elif _state == States.ACTION_SUCCESS:
+		set_state(States.ACTION_COMPLETE)
+	elif _state == States.ACTION_FAILED:
+		set_state(States.ACTION_INIT)
 
 func character_left() -> void:
 	if _state == States.ACTION_SUCCESS:

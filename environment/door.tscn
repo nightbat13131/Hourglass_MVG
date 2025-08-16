@@ -87,6 +87,7 @@ shape = SubResource("RectangleShape2D_jehm5")
 debug_color = Color(0.0588235, 0.854902, 0.996078, 0.419608)
 
 [node name="Label" type="Label" parent="Area2D_close_door_inside"]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Outside"
@@ -106,6 +107,7 @@ shape = SubResource("RectangleShape2D_275g2")
 debug_color = Color(0.447238, 0.861388, 0.697397, 0.419608)
 
 [node name="Label2" type="Label" parent="Area2D_close_door_outside"]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -130,6 +132,7 @@ shape = SubResource("RectangleShape2D_are4n")
 debug_color = Color(0.0588235, 0.854902, 0.996078, 0.419608)
 
 [node name="Label" type="Label" parent="Area2D_sleep_helper"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

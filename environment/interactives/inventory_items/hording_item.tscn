@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://0mwrvbixaukb"]
+
+[ext_resource type="Texture2D" uid="uid://db21pepr6m4sr" path="res://images/actions/hording_icon.png" id="1_8xvyu"]
+[ext_resource type="Script" uid="uid://v7kmtg1c8sbu" path="res://environment/interactives/inventory_items/inventory_item.gd" id="2_r4bdy"]
+
+[node name="Sprite2D" type="TextureRect"]
+offset_right = 15.0
+offset_bottom = 15.0
+texture = ExtResource("1_8xvyu")
+stretch_mode = 2
+script = ExtResource("2_r4bdy")

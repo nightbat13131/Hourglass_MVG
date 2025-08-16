@@ -12,6 +12,7 @@ var sprite_2d: Sprite2D # sprite sheet
 var shader : Material # Shader
 
 func _ready() -> void:
+	# Utilities.snap_to_interval(self,48/16.0) ruines some careful placement
 	if sprite_2d == null: # or texture_rect == null:
 		for each_child in get_children():
 			if each_child is Sprite2D:
@@ -59,6 +60,8 @@ func _init_shader() -> void:
 	sprite_2d.get_material().set_shader(load(SHADER_SCRIPT))
 	shader = sprite_2d.get_material()#.get_shader()
 	shader.set_shader_parameter('outline_width', 3.0)
+
+func is_complete() -> bool: return _res.is_complete()
 
 #func set_collision_enabled(is_enabled: bool) -> void:
 	# same name as TileMapLayer function to support propigate 

@@ -31,7 +31,8 @@ static func update_percentage() -> void:
 	_domain_tween.set_trans(Tween.TRANS_LINEAR)
 	_domain_tween.tween_method(set_domain, _domain_helper, value, .5)
 	prints(_completed.size(),  float(_interactions.size()),  value)
-
+	if is_equal_approx(value, 1.0):
+		Player.on_game_finished()
 
 static func set_domain(value: float) -> void:
 	_domain_helper = value

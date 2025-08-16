@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=41 format=3 uid="uid://bxekjvs41vost"]
+[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=47 format=3 uid="uid://bxekjvs41vost"]
 
 [ext_resource type="Script" uid="uid://cpplm41b5bt6m" path="res://addons/guide/guide_action_mapping.gd" id="1_5o1ku"]
 [ext_resource type="Script" uid="uid://mtx1unc2aqn7" path="res://addons/guide/guide_input_mapping.gd" id="2_a1ejx"]
@@ -234,10 +234,56 @@ input = SubResource("Resource_18mqt")
 modifiers = Array[ExtResource("5_1aba5")]([])
 triggers = Array[ExtResource("6_k1016")]([SubResource("Resource_87qep")])
 
+[sub_resource type="Resource" id="Resource_r4mbq"]
+script = ExtResource("4_adet1")
+key = 32
+shift = false
+control = false
+alt = false
+meta = false
+allow_additional_modifiers = true
+
+[sub_resource type="Resource" id="Resource_kbdyy"]
+script = ExtResource("10_rqx6i")
+actuation_threshold = 0.5
+
+[sub_resource type="Resource" id="Resource_ma4o4"]
+script = ExtResource("2_a1ejx")
+override_action_settings = false
+is_remappable = false
+display_name = ""
+display_category = ""
+input = SubResource("Resource_r4mbq")
+modifiers = Array[ExtResource("5_1aba5")]([])
+triggers = Array[ExtResource("6_k1016")]([SubResource("Resource_kbdyy")])
+
+[sub_resource type="Resource" id="Resource_0q0pa"]
+script = ExtResource("4_adet1")
+key = 4194309
+shift = false
+control = false
+alt = false
+meta = false
+allow_additional_modifiers = true
+
+[sub_resource type="Resource" id="Resource_cclkv"]
+script = ExtResource("10_rqx6i")
+actuation_threshold = 0.5
+
+[sub_resource type="Resource" id="Resource_m0hp5"]
+script = ExtResource("2_a1ejx")
+override_action_settings = false
+is_remappable = false
+display_name = ""
+display_category = ""
+input = SubResource("Resource_0q0pa")
+modifiers = Array[ExtResource("5_1aba5")]([])
+triggers = Array[ExtResource("6_k1016")]([SubResource("Resource_cclkv")])
+
 [sub_resource type="Resource" id="Resource_k4iaf"]
 script = ExtResource("1_5o1ku")
 action = ExtResource("9_k1016")
-input_mappings = Array[ExtResource("2_a1ejx")]([SubResource("Resource_ebrfw")])
+input_mappings = Array[ExtResource("2_a1ejx")]([SubResource("Resource_ebrfw"), SubResource("Resource_ma4o4"), SubResource("Resource_m0hp5")])
 
 [resource]
 script = ExtResource("2_m15cq")

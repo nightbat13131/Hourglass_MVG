@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3ek1f8dl4jn2"]
+
+[ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_ypoeo"]
+[ext_resource type="Resource" uid="uid://dm2oiujjj0jqe" path="res://environment/interactives/receive_blondie_del_bed.tres" id="2_3t736"]
+[ext_resource type="Texture2D" uid="uid://dy42ht30dquml" path="res://images/actions/Blondie_sprite.png" id="3_tb116"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk18p"]
+atlas = ExtResource("3_tb116")
+region = Rect2(51, 0, 51, 51)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wk18p"]
+radius = 24.0
+
+[node name="Receive_Blondie_Del_Bed" type="StaticBody2D"]
+script = ExtResource("1_ypoeo")
+_res = ExtResource("2_3t736")
+metadata/_custom_type_script = "uid://b27dj4q5es4ku"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.5
+offset_top = -25.5
+offset_right = 25.5
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_wk18p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_tb116")
+region_rect = Rect2(0, 0, 51, 69)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wk18p")

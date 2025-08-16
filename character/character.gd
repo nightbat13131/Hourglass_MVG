@@ -8,7 +8,7 @@ const STILL = 'still' # y = 0
 const IDLE = 'idle' # y = 1
 const WALK = 'walk' # y = 2
 
-
+var _default_text = ''
 
 var _max_speed := Utilities.GRID_WIDTH * 7.0 # px per second
 var _acceleration := _max_speed*  .75 
@@ -28,9 +28,11 @@ var _is_walking := false : set = set_is_walking
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 var playback : AnimationNodeStateMachinePlayback
+static var _instance : Player
 
 func _ready() -> void:
 	show()
+	_instance = self
 	playback = animation_tree['parameters/playback']
 	area_2d_reach.body_entered.connect(_on_area_2d_reach_body_entered)
 	area_2d_reach.body_exited.connect(_on_area_2d_reach_body_exited)
@@ -84,7 +86,6 @@ func set_is_walking(new_value: bool) -> void:
 	animation_tree['parameters/conditions/is_idle'] = !_is_walking
 	#print_debug(animation_tree['parameters/conditions/is_walking'], animation_tree['parameters/conditions/is_idle'])
 
-
 func has_interaction() -> bool:
 	return !_interactive == null
 
@@ -118,10 +119,21 @@ func clear_action() -> void:
 			_interactive.action_updated.disconnect(_on_action_updated)
 		_interactive.character_left()
 		_interactive = null
-	set_action_label("")
+	set_action_label(_default_text)
 
 func set_action_label(text: String) -> void:
 	if action_label.get_text() == text:
 		return
 	action_label.set_text(text)
 	action_label.set_visible(text.length() > 1)
+
+static func on_game_finished() -> void: _instance._on_game_finished()
+
+func _on_game_finished() -> void:
+	_default_text = "Fin"
+	if action_label.get_text().length() <= 1:
+		set_action_label(_default_text)
+
+static func set_debug_text(text: String) -> void: _instance.debug_text.set_text(text)
+
+static func get_player() -> Player: return _instance

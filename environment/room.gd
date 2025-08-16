@@ -19,6 +19,9 @@ static var _last_room: Room
 var alpha_tween : Tween
 var ALPHA_DURATION := .10
 
+var _interactions_complete := false
+var _interaction_count := 0
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
@@ -29,6 +32,9 @@ func _ready() -> void:
 	for each_child in get_children():
 		if each_child is Door:
 			each_child.parent_room = self
+		elif each_child is Interactive:
+			#each_child.action_updated.connect(_on_interaction_update)
+			_interaction_count += 1
 
 func summon(summoning_door: Door, internal_door: Door) -> void:
 	
@@ -128,3 +134,18 @@ static func _filter_room_type(room: Room, target_room_type: Room.RoomTypes, sour
 	if target_room_type == RoomTypes.None or source_room_type == RoomTypes.None :
 		return true
 	return room.get_room_type() == target_room_type and room.has_door_for(source_room_type)
+
+func are_interactions_complete() -> bool:
+	if _interactions_complete: 
+		# don't need to check
+		return true
+	elif _interaction_count == 0 or get_room_type() == RoomTypes.Outside: 
+		# never complete for these kinds of rooms
+		return false
+	var remaining := _interaction_count
+	for each_child in get_children():
+		if each_child is Interactive:
+			if each_child.is_complete():
+				remaining -= 1
+	_interactions_complete = remaining <= 0
+	return _interactions_complete

@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://begcfvth2yy3j"]
+[gd_scene load_steps=28 format=3 uid="uid://begcfvth2yy3j"]
 
 [ext_resource type="Script" uid="uid://ccms35rsddrss" path="res://character/character.gd" id="1_yf0e5"]
 [ext_resource type="Resource" uid="uid://dlmievewarnnb" path="res://guide/move.tres" id="2_ugqs2"]
 [ext_resource type="Resource" uid="uid://ci736fk7cvhpm" path="res://guide/interact.tres" id="3_hx151"]
 [ext_resource type="Texture2D" uid="uid://ctscsiw1ueh8d" path="res://images/player/hourglass2.png" id="3_ugqs2"]
 [ext_resource type="AnimationLibrary" uid="uid://tf1dbk3w1eee" path="res://character/player_animationlibrary.tres" id="5_0rvpn"]
+[ext_resource type="Script" uid="uid://bshbjlwcseq1p" path="res://environment/point_light_extended.gd" id="6_o6jyn"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hx151"]
 light_mode = 1
@@ -87,6 +88,18 @@ states/walk/node = SubResource("AnimationNodeBlendSpace2D_hd715")
 states/walk/position = Vector2(600, 91)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_0rvpn"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_o6jyn"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_tgjim")]
 
+[sub_resource type="Gradient" id="Gradient_5sfe2"]
+offsets = PackedFloat32Array(0, 0.509506, 0.825095, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.259294, 0.259294, 0.259294, 1, 0.187176, 0.187176, 0.187176, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tgjim"]
+gradient = SubResource("Gradient_5sfe2")
+width = 576
+height = 576
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Character" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
@@ -103,6 +116,7 @@ hframes = 56
 vframes = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 16)
 shape = SubResource("CapsuleShape2D_0rvpn")
 debug_color = Color(0.823163, 0.906817, 0.948562, 0.419608)
@@ -114,6 +128,7 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Reach"]
+visible = false
 shape = SubResource("CircleShape2D_ugqs2")
 debug_color = Color(0.815552, 0.33808, 0.590092, 0.42)
 
@@ -175,3 +190,15 @@ parameters/conditions/is_idle = true
 parameters/conditions/is_walking = false
 parameters/idle/blend_position = 0.432495
 parameters/walk/blend_position = Vector2(0, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, 2)
+energy = 0.0
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_tgjim")
+script = ExtResource("6_o6jyn")

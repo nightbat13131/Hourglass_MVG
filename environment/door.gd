@@ -1,6 +1,13 @@
 @tool
 class_name Door extends Node2D
 
+# inside dooor
+# outside door
+# glass door
+# green house
+# brown house
+
+
 static var _last_synced_doors : Array[Door]
 
 static var _all_doors : Array[Door]
@@ -59,10 +66,11 @@ func _ready() -> void:
 			each_collision_shape.set_shape( each_collision_shape.get_shape().duplicate())
 			coll_height = each_collision_shape.get_shape().size.y
 			each_collision_shape.get_shape().size.y = coll_height *2
-	## TODO: need to decide how to handle stairs
 	else: 
 		garage_image.queue_free()
 		_image = door_image
+		if _is_stairs: # stairs graphic handled on map, not here
+			door_image.set_texture(null)
 	_image.show()
 
 func get_connected_room_type() -> Room.RoomTypes:
@@ -112,7 +120,10 @@ func sync_with(partner: Door) -> void:
 	set_is_asleep(true) # needs to not trigger functionality untill the overlapped door is done
 
 func _open_door() -> void:
-	if !_last_synced_doors.has(self) or _temp_partner_door == null:
+	## Completed rooms are easier to get to, but not leave. 
+	if _true_partner_door.parent_room.are_interactions_complete():
+		_temp_partner_door = _true_partner_door
+	elif !_last_synced_doors.has(self) or _temp_partner_door == null:
 		_temp_partner_door = _find_temp_match_door()
 	if _temp_partner_door == null:
 		printerr("_temp_partner_door still null")
@@ -214,3 +225,8 @@ func __shimmy_helper(domain: float, y: float, start_x: float) -> void:
 	var shimmy_range := 10.0
 	var x = start_x + (_shimmy_curve.sample(domain) * shimmy_range)
 	_image.set_position(Vector2(x, y))
+
+static func get_last_room() -> Room:
+	if _last_synced_doors.is_empty():
+		return null
+	return _last_synced_doors[-1].get_parent()

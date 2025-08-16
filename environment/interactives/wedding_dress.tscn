@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://bbqppwpk2rdl8"]
+
+[ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_keogh"]
+[ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="2_g3q70"]
+[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="3_woyer"]
+[ext_resource type="Texture2D" uid="uid://cti28kslpft72" path="res://images/actions/wedding_dress.png" id="4_e1722"]
+
+[sub_resource type="Resource" id="Resource_h7qof"]
+script = ExtResource("2_g3q70")
+_text = "\"I just want you to be happy!\" - Tinny Me"
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 0.890196, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_n8g2h"]
+script = ExtResource("2_g3q70")
+_text = "\"I met this guy and I think I want to marry him...\" - Mom"
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(0.792157, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_tp4gl"]
+script = ExtResource("2_g3q70")
+_text = "\"She was not -in fact- happy.\" - Narrator"
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(0.646029, 0.646029, 0.646029, 1)
+_highlight_color = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_srygu"]
+script = ExtResource("3_woyer")
+_state_details = Dictionary[int, Object]({
+2: SubResource("Resource_h7qof"),
+3: SubResource("Resource_n8g2h"),
+12: SubResource("Resource_tp4gl")
+})
+metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oenle"]
+radius = 20.0
+height = 60.0
+
+[node name="WeddingDress" type="StaticBody2D"]
+script = ExtResource("1_keogh")
+_res = SubResource("Resource_srygu")
+metadata/_custom_type_script = "uid://b27dj4q5es4ku"
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_e1722")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_oenle")
