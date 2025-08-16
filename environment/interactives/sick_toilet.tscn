@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://udrcpdgs870p"]
+
+[ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_4g8o8"]
+[ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="2_dapoc"]
+[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="3_0oqi5"]
+[ext_resource type="Texture2D" uid="uid://bs150mdmulcn8" path="res://images/actions/sua_toilet.png" id="4_dwrqs"]
+
+[sub_resource type="Resource" id="Resource_2qgsw"]
+script = ExtResource("2_dapoc")
+_text = "Something was very wrong with those cookies... 
+and both ends suffered. "
+_sprite_frame_cord = Vector2i(0, 1)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(0.051, 0.945, 0, 0.5)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_6cev3"]
+script = ExtResource("2_dapoc")
+_text = "Wierd giant bathroom and the toilet is still right next to the tub."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 0)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_di2q3"]
+script = ExtResource("2_dapoc")
+_text = "That proximity could be useful..."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 0)
+_highlight_color = Color(0.781582, 0.0429789, 0.0241745, 0.5)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_vo3ge"]
+script = ExtResource("2_dapoc")
+_text = "Spent all night next to my porcelain best friend. "
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_jwon8"]
+script = ExtResource("3_0oqi5")
+_state_details = Dictionary[int, Object]({
+2: SubResource("Resource_2qgsw"),
+3: SubResource("Resource_6cev3"),
+11: SubResource("Resource_di2q3"),
+12: SubResource("Resource_vo3ge")
+})
+metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"
+
+[node name="Interactive" type="StaticBody2D"]
+script = ExtResource("1_4g8o8")
+_res = SubResource("Resource_jwon8")
+metadata/_custom_type_script = "uid://b27dj4q5es4ku"
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(94, 9, -63, 7, -83, 32, -136, 30, -136, -111, 126, -98, 126, -5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_dwrqs")
+vframes = 2

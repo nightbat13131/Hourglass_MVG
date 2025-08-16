@@ -25,7 +25,7 @@ metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 script = ExtResource("1_phmx8")
 _text = "Cool that deer come here so often."
 _sprite_frame_cord = Vector2i(0, 0)
-_sprite_color = Color(1, 1, 1, 1)
+_sprite_color = Color(1, 1, 1, 0)
 _highlight_color = Color(1, 1, 1, 0)
 metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 

@@ -30,6 +30,7 @@ var _is_walking := false : set = set_is_walking
 var playback : AnimationNodeStateMachinePlayback
 
 func _ready() -> void:
+	show()
 	playback = animation_tree['parameters/playback']
 	area_2d_reach.body_entered.connect(_on_area_2d_reach_body_entered)
 	area_2d_reach.body_exited.connect(_on_area_2d_reach_body_exited)

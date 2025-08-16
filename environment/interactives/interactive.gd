@@ -26,6 +26,7 @@ func _ready() -> void:
 	else: 
 		printerr("No resource for ", self)
 	update_visual()
+	InteractionManager.add_interaction(self)
 
 func get_text() -> String: return _res.get_text()
 
@@ -40,6 +41,8 @@ func do_action() -> void:
 func _on_res_state_changed() -> void:
 	action_updated.emit()
 	update_visual()
+	if _res.is_complete():
+		InteractionManager.interaction_complete(self)
 
 func character_left() -> void:
 	_res.character_left()
@@ -56,3 +59,10 @@ func _init_shader() -> void:
 	sprite_2d.get_material().set_shader(load(SHADER_SCRIPT))
 	shader = sprite_2d.get_material()#.get_shader()
 	shader.set_shader_parameter('outline_width', 3.0)
+
+#func set_collision_enabled(is_enabled: bool) -> void:
+	# same name as TileMapLayer function to support propigate 
+	# Turns out I don't need this based on how StaticBody2D already handles Node.PROCESS_MODE_DISABLED
+	# DISABLE_MODE_REMOVE = 0
+	# When Node.process_mode is set to Node.PROCESS_MODE_DISABLED, remove from the physics simulation to stop all physics interactions with this CollisionObject2Dpass
+	

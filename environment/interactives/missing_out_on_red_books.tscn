@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://djx4s4eysd477"]
+
+[ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_ahe4h"]
+[ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="2_lhx4x"]
+[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="3_48bn0"]
+[ext_resource type="Texture2D" uid="uid://6fttepkrpthm" path="res://images/actions/bookshelf red_books.png" id="4_pukcn"]
+
+[sub_resource type="Resource" id="Resource_vo3ge"]
+script = ExtResource("2_lhx4x")
+_text = "Cool red book of childrens stories. They'll be great when I have a kid."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_jwon8"]
+script = ExtResource("2_lhx4x")
+_text = "...they gave them away..."
+_sprite_frame_cord = Vector2i(0, 1)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0.5)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_5kios"]
+script = ExtResource("2_lhx4x")
+_text = "guess i should have spoke up"
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_oenle"]
+script = ExtResource("3_48bn0")
+_state_details = Dictionary[int, Object]({
+2: SubResource("Resource_jwon8"),
+3: SubResource("Resource_vo3ge"),
+12: SubResource("Resource_5kios")
+})
+metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qgsw"]
+size = Vector2(96, 95)
+
+[node name="Missing out on red books" type="StaticBody2D"]
+rotation = 1.5708
+script = ExtResource("1_ahe4h")
+_res = SubResource("Resource_oenle")
+metadata/_custom_type_script = "uid://b27dj4q5es4ku"
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_pukcn")
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_2qgsw")

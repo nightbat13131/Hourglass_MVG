@@ -65,7 +65,9 @@ func activate(fast: bool) -> void:
 func deactivate(fast: bool) -> void:
 	#print_debug(self, fast)
 	var current_color = get_modulate()
-	set_collision_enabled(false)
+
+	propagate_call('set_collision_enabled', [false], true)
+
 	for every_door in _get_doors():
 		every_door.set_is_asleep(false)
 	if fast:

@@ -59,9 +59,11 @@ func _ready() -> void:
 			each_collision_shape.set_shape( each_collision_shape.get_shape().duplicate())
 			coll_height = each_collision_shape.get_shape().size.y
 			each_collision_shape.get_shape().size.y = coll_height *2
+	## TODO: need to decide how to handle stairs
 	else: 
 		garage_image.queue_free()
 		_image = door_image
+	_image.show()
 
 func get_connected_room_type() -> Room.RoomTypes:
 	if _true_partner_door != null:

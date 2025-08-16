@@ -1,16 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddbosm2mm5n4e"]
+[gd_scene load_steps=6 format=3 uid="uid://ddbosm2mm5n4e"]
 
 [ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_wk18p"]
 [ext_resource type="Resource" uid="uid://cu1npj4yun7a" path="res://environment/interactives/blondie_gift.tres" id="2_v3ux0"]
 [ext_resource type="Texture2D" uid="uid://dy42ht30dquml" path="res://images/actions/Blondie_sprite.png" id="3_wk18p"]
-[ext_resource type="Shader" uid="uid://22opvb4ikfpf" path="res://environment/interactives/sprite_outline.gdshader" id="4_qqqlj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wf0sp"]
-shader = ExtResource("4_qqqlj")
-shader_parameter/outline_width = 3.0
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/texture_region = Vector4(0, 0, 0, 0)
-shader_parameter/modulate_color = Color(1, 0.945098, 0.909804, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wk18p"]
 radius = 24.0

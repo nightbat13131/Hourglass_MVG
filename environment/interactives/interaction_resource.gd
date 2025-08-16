@@ -56,3 +56,5 @@ func get_state_details() -> InteractionStates:
 		printerr("state details missing for ", self, " for state ", _state)
 		dets = InteractionStates.new()
 	return dets
+
+func is_complete() -> bool: return _state == States.ACTION_COMPLETE
