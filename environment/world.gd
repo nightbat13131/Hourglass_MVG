@@ -17,7 +17,13 @@ func _process(_delta: float) -> void:
 	print_debug(Door._last_synced_doors)
 	if Door._last_synced_doors.is_empty():
 		return
-	var emergacny_room = Door._last_synced_doors[0]
-	Door._last_synced_doors[0].get_parent().activate(false)
-	# puts me in the doorway, not the center of the room, but... I'm okay with that.
-	Player.get_player().set_global_position(emergacny_room.get_global_position())
+	#for each_door in Door._last_synced_doors:
+	#	each_door.parent_room.activate(false)
+	
+	var emergancy_door := Door._last_synced_doors[0]
+	emergancy_door._open_door()
+	
+	#var emergancy_room := emergancy_door.parent_room
+	#emergancy_room.activate(false)
+	
+	Player.get_player().set_global_position(emergancy_door.get_global_position())

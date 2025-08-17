@@ -12,7 +12,7 @@ _text = "\"Oh do you want this mirror?\"
 NO!"
 _sprite_frame_cord = Vector2i(0, 0)
 _sprite_color = Color(1, 1, 1, 1)
-_highlight_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0.486275)
 metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
 [sub_resource type="Resource" id="Resource_tp4gl"]
@@ -37,7 +37,7 @@ script = ExtResource("3_rv272")
 _text = "I don't even drink from glass cups anymore."
 _sprite_frame_cord = Vector2i(0, 0)
 _sprite_color = Color(1, 1, 1, 1)
-_highlight_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0)
 metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
 [sub_resource type="Resource" id="Resource_uijyg"]

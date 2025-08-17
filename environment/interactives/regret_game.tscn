@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://crjpm26n5y3x8"]
+
+[ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_2w8hi"]
+[ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="2_eagvq"]
+[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="3_fxuyr"]
+[ext_resource type="Texture2D" uid="uid://5lfegp7ujkqd" path="res://images/actions/regret_game.png" id="4_68vx6"]
+
+[sub_resource type="Resource" id="Resource_ulkbr"]
+script = ExtResource("2_eagvq")
+_text = "Play"
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_palbt"]
+script = ExtResource("2_eagvq")
+_text = "...no, there's no way they'd let me..."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0.501961)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_uijyg"]
+script = ExtResource("2_eagvq")
+_text = "I should have risked it."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_bpavc"]
+script = ExtResource("3_fxuyr")
+_state_details = Dictionary[int, Object]({
+2: SubResource("Resource_palbt"),
+3: SubResource("Resource_ulkbr"),
+12: SubResource("Resource_uijyg")
+})
+metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_srygu"]
+size = Vector2(47, 99)
+
+[node name="RegretGame" type="StaticBody2D"]
+rotation = 1.5708
+script = ExtResource("1_2w8hi")
+_res = SubResource("Resource_bpavc")
+metadata/_custom_type_script = "uid://b27dj4q5es4ku"
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_68vx6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 6.5)
+shape = SubResource("RectangleShape2D_srygu")

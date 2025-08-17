@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clb6qipgfgyra"
-path="res://.godot/imported/16_Office_48x48.png-92e78a212878eb17e76a3b5bb455685c.ctex"
+uid="uid://bocmul8xwhngx"
+path="res://.godot/imported/dry_off.png-a1540e2bdf69788c0a517adc768138e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/props/16_Office_48x48.png"
-dest_files=["res://.godot/imported/16_Office_48x48.png-92e78a212878eb17e76a3b5bb455685c.ctex"]
+source_file="res://images/actions/dry_off.png"
+dest_files=["res://.godot/imported/dry_off.png-a1540e2bdf69788c0a517adc768138e5.ctex"]
 
 [params]
 
