@@ -5,14 +5,6 @@
 [ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="3_y3yow"]
 [ext_resource type="Texture2D" uid="uid://chd6uomo5dwga" path="res://images/actions/hotdog_tv.png" id="4_7vkow"]
 
-[sub_resource type="Resource" id="Resource_n8g2h"]
-script = ExtResource("2_km665")
-_text = "just turn on the tv while i'm board..."
-_sprite_frame_cord = Vector2i(0, 0)
-_sprite_color = Color(1, 1, 1, 1)
-_highlight_color = Color(1, 1, 1, 1)
-metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
-
 [sub_resource type="Resource" id="Resource_h7qof"]
 script = ExtResource("2_km665")
 _text = "WAS NOT SUPPOSED TO SEE THAT"
@@ -21,10 +13,18 @@ _sprite_color = Color(1, 1, 1, 1)
 _highlight_color = Color(1, 0, 0, 0.5)
 metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
+[sub_resource type="Resource" id="Resource_n8g2h"]
+script = ExtResource("2_km665")
+_text = "just turn on the tv while i'm board..."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
 [sub_resource type="Resource" id="Resource_tp4gl"]
 script = ExtResource("2_km665")
 _text = "... don't think about it..."
-_sprite_frame_cord = Vector2i(0, 0)
+_sprite_frame_cord = Vector2i(0, 2)
 _sprite_color = Color(1, 1, 1, 1)
 _highlight_color = Color(1, 1, 1, 0)
 metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
@@ -49,7 +49,7 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_7vkow")
-vframes = 2
+vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -1)

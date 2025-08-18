@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://3mnha7lg4063"]
+
+[ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_0hcxu"]
+[ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="2_wd6u2"]
+[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="3_mcdoq"]
+[ext_resource type="Texture2D" uid="uid://cd37xr035glmk" path="res://images/actions/art_fingers.png" id="4_5seo1"]
+
+[sub_resource type="Resource" id="Resource_olx1w"]
+script = ExtResource("2_wd6u2")
+_text = "\"I love to watching you work with 
+your long fingers. “ - Granma"
+_sprite_frame_cord = Vector2i(0, 1)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0.509804)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_bpavc"]
+script = ExtResource("2_wd6u2")
+_text = "Countless crafts with Mom and Granma."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_c63i5"]
+script = ExtResource("2_wd6u2")
+_text = "Sometimes it's the odd 
+compliments that stay with you."
+_sprite_frame_cord = Vector2i(0, 2)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_yucco"]
+script = ExtResource("3_mcdoq")
+_state_details = Dictionary[int, Object]({
+2: SubResource("Resource_olx1w"),
+3: SubResource("Resource_bpavc"),
+12: SubResource("Resource_c63i5")
+})
+metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uijyg"]
+size = Vector2(140, 63)
+
+[node name="ArtFingers" type="StaticBody2D"]
+rotation = -1.5708
+script = ExtResource("1_0hcxu")
+_res = SubResource("Resource_yucco")
+metadata/_custom_type_script = "uid://b27dj4q5es4ku"
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 3.61999e-06)
+texture = ExtResource("4_5seo1")
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 13.5)
+shape = SubResource("RectangleShape2D_uijyg")

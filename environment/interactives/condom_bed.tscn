@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://clticpj4ycvgi"]
+
+[ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_jsn8k"]
+[ext_resource type="Resource" uid="uid://btsfwueu6qtm4" path="res://environment/interactives/condom_bed.tres" id="2_1453n"]
+[ext_resource type="Texture2D" uid="uid://dj0rqt0snmc8u" path="res://images/actions/condom_bed.png" id="2_ar1px"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c63i5"]
+size = Vector2(136, 155)
+
+[node name="CondomBed" type="StaticBody2D"]
+script = ExtResource("1_jsn8k")
+_res = ExtResource("2_1453n")
+metadata/_custom_type_script = "uid://b27dj4q5es4ku"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ar1px")
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_c63i5")

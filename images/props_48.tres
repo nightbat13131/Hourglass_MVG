@@ -177,6 +177,12 @@ texture_region_size = Vector2i(48, 48)
 5:34/0 = 0
 4:34/0 = 0
 4:33/0 = 0
+1:32/0 = 0
+1:33/0 = 0
+8:12/0 = 0
+8:13/0 = 0
+10:12/0 = 0
+10:13/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qcj6t"]
 texture = ExtResource("2_g8eqm")
@@ -237,8 +243,6 @@ texture_region_size = Vector2i(48, 48)
 3:5/0 = 0
 3:6/0 = 0
 3:7/0 = 0
-0:11/0 = 0
-0:12/0 = 0
 1:19/0 = 0
 7:48/0 = 0
 6:48/0 = 0
@@ -288,6 +292,37 @@ texture_region_size = Vector2i(48, 48)
 13:59/0 = 0
 13:64/0 = 0
 13:65/0 = 0
+7:16/0 = 0
+7:17/0 = 0
+6:17/0 = 0
+5:17/0 = 0
+4:17/0 = 0
+4:16/0 = 0
+5:16/0 = 0
+6:16/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+6:15/0 = 0
+7:15/0 = 0
+11:18/0 = 0
+12:19/0 = 0
+12:18/0 = 0
+13:18/0 = 0
+14:18/0 = 0
+14:19/0 = 0
+13:19/0 = 0
+11:19/0 = 0
+14:73/0 = 0
+15:73/0 = 0
+6:27/0 = 0
+7:27/0 = 0
+7:28/0 = 0
+6:28/0 = 0
+8:27/0 = 0
+8:28/0 = 0
+4:28/0 = 0
+3:28/0 = 0
+5:28/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk6w2"]
 texture = ExtResource("3_p0y4x")
@@ -434,6 +469,16 @@ texture_region_size = Vector2i(48, 48)
 1:13/0 = 0
 9:13/0 = 0
 9:12/0 = 0
+6:6/0 = 0
+6:7/0 = 0
+10:10/0 = 0
+9:9/0 = 0
+1:22/0 = 0
+1:21/0 = 0
+14:7/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+15:7/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d0wgg"]
 texture = ExtResource("7_5qtan")
@@ -482,6 +527,8 @@ texture_region_size = Vector2i(48, 48)
 10:61/0 = 0
 10:62/0 = 0
 11:61/0 = 0
+2:62/0 = 0
+2:61/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5qtan"]
 texture = ExtResource("8_wleoh")
@@ -686,6 +733,10 @@ texture_region_size = Vector2i(48, 48)
 15:19/0 = 0
 15:18/0 = 0
 15:17/0 = 0
+13:27/0 = 0
+13:28/0 = 0
+15:8/0 = 0
+15:9/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q85l8"]
 texture = ExtResource("12_i3l5l")
@@ -785,6 +836,18 @@ texture_region_size = Vector2i(48, 48)
 20:62/0 = 0
 21:62/0 = 0
 21:61/0 = 0
+24:40/0 = 0
+24:41/0 = 0
+24:42/0 = 0
+25:41/0 = 0
+26:41/0 = 0
+27:41/0 = 0
+27:40/0 = 0
+27:42/0 = 0
+26:42/0 = 0
+25:42/0 = 0
+22:30/0 = 0
+22:29/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ure4v"]
 texture = ExtResource("17_cb4cc")
@@ -811,6 +874,18 @@ texture_region_size = Vector2i(48, 48)
 13:36/0 = 0
 13:35/0 = 0
 11:34/0 = 0
+29:31/0 = 0
+29:32/0 = 0
+29:33/0 = 0
+28:33/0 = 0
+28:32/0 = 0
+28:31/0 = 0
+21:32/0 = 0
+21:33/0 = 0
+20:33/0 = 0
+19:33/0 = 0
+19:32/0 = 0
+20:32/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_abf21"]
 texture = ExtResource("20_gvs4i")
@@ -819,6 +894,9 @@ texture_region_size = Vector2i(48, 48)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ps8oo"]
 texture = ExtResource("21_k2ogm")
 texture_region_size = Vector2i(48, 48)
+5:13/0 = 0
+5:14/0 = 0
+5:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5tx1"]
 texture = ExtResource("22_extk4")
@@ -850,6 +928,14 @@ texture_region_size = Vector2i(48, 48)
 31:51/0 = 0
 31:52/0 = 0
 31:53/0 = 0
+23:3/0 = 0
+22:3/0 = 0
+22:2/0 = 0
+22:1/0 = 0
+22:0/0 = 0
+23:0/0 = 0
+23:1/0 = 0
+23:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h4m5y"]
 texture = ExtResource("4_qcj6t")
@@ -957,8 +1043,6 @@ texture_region_size = Vector2i(48, 48)
 12:21/0 = 0
 11:9/0 = 0
 11:10/0 = 0
-1:6/0 = 0
-6:6/0 = 0
 15:17/0 = 0
 15:16/0 = 0
 15:15/0 = 0
@@ -986,6 +1070,10 @@ texture_region_size = Vector2i(48, 48)
 7:20/0 = 0
 13:7/0 = 0
 13:8/0 = 0
+6:7/0 = 0
+6:8/0 = 0
+1:5/0 = 0
+6:5/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xg8jy"]
 texture = ExtResource("24_xkusr")
@@ -1077,6 +1165,8 @@ texture_region_size = Vector2i(48, 48)
 8:9/0 = 0
 15:7/0 = 0
 15:8/0 = 0
+7:0/0 = 0
+7:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p0y4x"]
 texture = ExtResource("6_rh811")
@@ -1146,6 +1236,14 @@ texture_region_size = Vector2i(48, 48)
 5:30/0 = 0
 9:10/0 = 0
 9:11/0 = 0
+14:3/0 = 0
+14:4/0 = 0
+13:4/0 = 0
+13:3/0 = 0
+3:7/0 = 0
+3:8/0 = 0
+2:8/0 = 0
+2:7/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iuoik"]
 texture = ExtResource("14_d7gtw")
@@ -1164,10 +1262,6 @@ texture_region_size = Vector2i(48, 48)
 14:68/0 = 0
 2:33/0 = 0
 2:34/0 = 0
-1:34/0 = 0
-0:34/0 = 0
-0:33/0 = 0
-1:33/0 = 0
 3:31/0 = 0
 3:32/0 = 0
 3:33/0 = 0
@@ -1249,12 +1343,42 @@ texture_region_size = Vector2i(48, 48)
 8:101/0 = 0
 9:101/0 = 0
 9:105/0 = 0
-8:62/0 = 0
-9:62/0 = 0
-9:63/0 = 0
-8:63/0 = 0
 6:61/0 = 0
 7:61/0 = 0
+8:63/0 = 0
+9:63/0 = 0
+6:62/0 = 0
+7:62/0 = 0
+7:63/0 = 0
+6:63/0 = 0
+6:71/0 = 0
+6:72/0 = 0
+2:71/0 = 0
+2:72/0 = 0
+2:4/0 = 0
+2:5/0 = 0
+1:35/0 = 0
+1:36/0 = 0
+0:36/0 = 0
+0:35/0 = 0
+1:33/0 = 0
+1:34/0 = 0
+0:34/0 = 0
+0:33/0 = 0
+8:73/0 = 0
+8:74/0 = 0
+8:71/0 = 0
+8:72/0 = 0
+10:32/0 = 0
+9:32/0 = 0
+9:33/0 = 0
+10:33/0 = 0
+11:33/0 = 0
+12:33/0 = 0
+12:32/0 = 0
+12:31/0 = 0
+11:31/0 = 0
+11:32/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5abnr"]
 texture = ExtResource("15_crbxx")
@@ -1304,6 +1428,24 @@ texture_region_size = Vector2i(48, 48)
 13:20/0 = 0
 14:20/0 = 0
 14:19/0 = 0
+11:36/0 = 0
+10:36/0 = 0
+9:36/0 = 0
+12:78/0 = 0
+12:79/0 = 0
+12:80/0 = 0
+13:80/0 = 0
+14:80/0 = 0
+14:79/0 = 0
+14:78/0 = 0
+13:78/0 = 0
+13:79/0 = 0
+4:116/0 = 0
+4:117/0 = 0
+5:117/0 = 0
+6:117/0 = 0
+6:116/0 = 0
+5:116/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tv7dr"]
 texture = ExtResource("7_a3jw0")
@@ -1351,6 +1493,8 @@ texture_region_size = Vector2i(48, 48)
 2:5/0 = 0
 1:11/0 = 0
 0:11/0 = 0
+8:6/0 = 0
+8:7/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sd3m1"]
 texture = ExtResource("18_iuoik")
@@ -1385,15 +1529,6 @@ texture_region_size = Vector2i(48, 48)
 23:22/0 = 0
 23:21/0 = 0
 21:26/0 = 0
-21:19/0 = 0
-21:20/0 = 0
-22:20/0 = 0
-23:20/0 = 0
-23:19/0 = 0
-22:19/0 = 0
-23:18/0 = 0
-22:18/0 = 0
-21:18/0 = 0
 25:5/0 = 0
 29:3/0 = 0
 28:3/0 = 0

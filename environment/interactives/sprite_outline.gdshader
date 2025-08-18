@@ -33,6 +33,8 @@ void fragment() {
 	uv_offset = UV.x + outline_offset.x;
 	a = step(uv_offset, uv_region.x + uv_region.z) * texture(TEXTURE, vec2(uv_offset, UV.y)).a;
 	max_a = max(a, max_a);
+	if (outline_color.a <= 0.1) {COLOR = color*modulate_color;}
+	else {COLOR = mix(color*modulate_color, outline_color, max_a - color.a);}
 
-	COLOR = mix(color*modulate_color, outline_color, max_a - color.a);
+	
 }

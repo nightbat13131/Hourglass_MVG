@@ -15,10 +15,10 @@ atlas = ExtResource("3_ugqs2")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0rvpn"]
 radius = 16.0
-height = 48.0
+height = 40.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ugqs2"]
-radius = 60.0
+radius = 64.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ugqs2"]
 light_mode = 1
@@ -116,19 +116,17 @@ hframes = 56
 vframes = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, 16)
+position = Vector2(0, 18)
 shape = SubResource("CapsuleShape2D_0rvpn")
 debug_color = Color(0.823163, 0.906817, 0.948562, 0.419608)
 
 [node name="Area2D_Reach" type="Area2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -5)
+position = Vector2(0, 10)
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Reach"]
-visible = false
 shape = SubResource("CircleShape2D_ugqs2")
 debug_color = Color(0.815552, 0.33808, 0.590092, 0.42)
 

@@ -1,15 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvcleljkq6rj3"]
+[gd_scene load_steps=11 format=3 uid="uid://cvcleljkq6rj3"]
 
 [ext_resource type="Script" uid="uid://cep52t1vaiqbs" path="res://environment/door.gd" id="1_05hnu"]
-[ext_resource type="Texture2D" uid="uid://dx6bf17g3qso1" path="res://images/props/GarageCarDoor.png" id="2_are4n"]
-
-[sub_resource type="Curve" id="Curve_are4n"]
-_limits = [-0.1, 0.1, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.142529, 0.0488636), 0.0, 0.0, 0, 0, Vector2(0.250575, -0.05), 0.0, 0.0, 0, 0, Vector2(0.466667, 0.0965909), 0.0, 0.0, 0, 0, Vector2(0.583908, -0.0897727), 0.0, 0.0, 0, 0, Vector2(0.733333, 0.0454546), 0.0, 0.0, 0, 0, Vector2(0.875862, -0.0534091), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 8
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_are4n"]
-size = Vector2(96, 96)
+[ext_resource type="Texture2D" uid="uid://dx6bf17g3qso1" path="res://images/doors/GarageCarDoor.png" id="2_are4n"]
+[ext_resource type="Script" uid="uid://cn1u6jvdgx76o" path="res://environment/garage_image.gd" id="3_jehm5"]
+[ext_resource type="Texture2D" uid="uid://jqkgnnhhwsv6" path="res://images/doors/wood_doors.png" id="4_mubsm"]
+[ext_resource type="Script" uid="uid://dmstkr0snvh7q" path="res://environment/french_door_image.gd" id="5_mubsm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_05hnu"]
 size = Vector2(192, 99)
@@ -24,42 +19,27 @@ size = Vector2(114, 120)
 size = Vector2(196, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mubsm"]
-size = Vector2(240, 106)
+size = Vector2(288, 106)
 
 [node name="Door" type="Node2D"]
 script = ExtResource("1_05hnu")
-_shimmy_curve = SubResource("Curve_are4n")
+_door_material = null
 
-[node name="GarageImage" type="TextureRect" parent="."]
+[node name="GarageImage" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 visible = false
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -96.0
-offset_top = -96.0
-offset_bottom = 96.0
-grow_horizontal = 0
-grow_vertical = 2
 texture = ExtResource("2_are4n")
-stretch_mode = 1
+offset = Vector2(-48, 0)
+region_enabled = true
+region_rect = Rect2(96, 0, 96, 192)
+script = ExtResource("3_jehm5")
 
-[node name="DoorImage" type="TextureRect" parent="."]
+[node name="DoorImage" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-visible = false
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -48.0
-offset_bottom = 48.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = SubResource("PlaceholderTexture2D_are4n")
+rotation = 1.5708
+texture = ExtResource("4_mubsm")
+offset = Vector2(0, 48)
+script = ExtResource("5_mubsm")
 
 [node name="Area_PlayerAverage" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -121,7 +101,6 @@ text = "Inside"
 
 [node name="Area2D_sleep_helper" type="Area2D" parent="."]
 unique_name_in_owner = true
-visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -132,7 +111,6 @@ shape = SubResource("RectangleShape2D_are4n")
 debug_color = Color(0.0588235, 0.854902, 0.996078, 0.419608)
 
 [node name="Label" type="Label" parent="Area2D_sleep_helper"]
-visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -145,14 +123,11 @@ text = "Sleep"
 
 [node name="Area2D_visual_helper" type="Area2D" parent="."]
 unique_name_in_owner = true
-visible = false
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_visual_helper"]
 unique_name_in_owner = true
-visible = false
-position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_mubsm")
 
 [connection signal="body_shape_entered" from="Area2D_close_door_outside" to="." method="_on_area_2d_close_door_outside_body_shape_entered"]

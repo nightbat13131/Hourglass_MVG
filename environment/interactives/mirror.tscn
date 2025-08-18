@@ -7,23 +7,23 @@
 
 [sub_resource type="Resource" id="Resource_h7qof"]
 script = ExtResource("2_wfv13")
-_text = "~your getting old~"
+_text = "mirror is looking back at me"
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0.490196)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_n8g2h"]
+script = ExtResource("2_wfv13")
+_text = "looking at the mirror"
 _sprite_frame_cord = Vector2i(0, 0)
 _sprite_color = Color(1, 1, 1, 1)
 _highlight_color = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
-[sub_resource type="Resource" id="Resource_n8g2h"]
-script = ExtResource("2_wfv13")
-_text = "Mirrors looking back at me"
-_sprite_frame_cord = Vector2i(0, 0)
-_sprite_color = Color(1, 1, 1, 1)
-_highlight_color = Color(1, 1, 1, 0.498039)
-metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
-
 [sub_resource type="Resource" id="Resource_tp4gl"]
 script = ExtResource("2_wfv13")
-_text = "~your getting old~"
+_text = "\"You're getting old\" - Mirror"
 _sprite_frame_cord = Vector2i(0, 1)
 _sprite_color = Color(1, 1, 1, 1)
 _highlight_color = Color(1, 1, 1, 0)

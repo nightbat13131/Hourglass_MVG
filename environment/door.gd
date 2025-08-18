@@ -16,8 +16,9 @@ static var _all_doors : Array[Door]
 
 @export var _is_stairs := false
 @export var _is_car_garage := false
+@export var _door_material := DoorImage.DoorMaterial.WOOD
 
-@export var _shimmy_curve : Curve
+#@export var _shimmy_curve : Curve
 
 @onready var area_player_average: Area2D = %Area_PlayerAverage
 @onready var area_2d_close_door_inside: Area2D = %Area2D_close_door_inside
@@ -25,10 +26,10 @@ static var _all_doors : Array[Door]
 @onready var area_2d_sleep_helper: Area2D = %Area2D_sleep_helper
 @onready var area_2d_visual_helper: Area2D = %Area2D_visual_helper
 
-@onready var garage_image: TextureRect = %GarageImage
-@onready var door_image: TextureRect = %DoorImage
+@onready var _garage_image: DoorImage = %GarageImage
+@onready var _door_image: DoorImage = %DoorImage
 
-var _image 
+var image : DoorImage
 
 var parent_room : Room
 var _temp_partner_door: Door
@@ -57,9 +58,10 @@ func _ready() -> void:
 	area_2d_close_door_outside.body_exited.connect(_on_body_change.bind(false, area_2d_close_door_outside))
 	area_2d_sleep_helper.body_exited.connect(_on_area_2d_sleep_helper_body_exited)
 	area_2d_visual_helper.body_entered.connect(_on_area_2d_visual_helper_body_entered)
+	area_2d_visual_helper.body_exited.connect(_on_area_2d_visual_helper_body_exited)
 	if _is_car_garage:
-		door_image.queue_free()
-		_image = garage_image
+		_door_image.queue_free()
+		image = _garage_image
 		var coll_height: float
 		for each_collision_shape : CollisionShape2D in [ %CollisionShape_Player, %CollisionShape2D_inside, %CollisionShape2D_outside, %CollisionShape2D_Sleep, %CollisionShape2D]:
 			# assuming all rectangles
@@ -67,11 +69,13 @@ func _ready() -> void:
 			coll_height = each_collision_shape.get_shape().size.y
 			each_collision_shape.get_shape().size.y = coll_height *2
 	else: 
-		garage_image.queue_free()
-		_image = door_image
+		_garage_image.queue_free()
+		image = _door_image
 		if _is_stairs: # stairs graphic handled on map, not here
-			door_image.set_texture(null)
-	_image.show()
+			_door_image.set_texture(null)
+		else:
+			image.setup_texture_door(_door_material)
+	image.show()
 
 func get_connected_room_type() -> Room.RoomTypes:
 	if _true_partner_door != null:
@@ -130,13 +134,12 @@ func _open_door() -> void:
 		return
 	_temp_partner_door.sync_with(self)
 	_is_open = true
-	set_modulate(Color.ORANGE_RED)
+	image.open()
+	#set_modulate(Color.ORANGE_RED)
 
 func _close_door() -> void:
 	_is_open = false
-	set_visible(true)
-	set_modulate(Color.WHITE)
-	# which room do we activate or deactivate? 
+	image.close()
 
 func _on_body_change(body: Node2D, is_entering: bool, area: Area2D) -> void:
 	if !body is Player:
@@ -198,6 +201,21 @@ func set_is_asleep(is_asleep: bool) -> void:
 	if _is_asleep != is_asleep:
 		_is_asleep = is_asleep
 		area_2d_sleep_helper.set_visible(_is_asleep)
+		if _is_asleep:
+			image.open(true)
+
+func _on_area_2d_visual_helper_body_entered(body: Node2D) -> void:
+	if body is Player and !_is_asleep:
+		image.peek()
+
+func _on_area_2d_visual_helper_body_exited(body: Node2D) -> void:
+	if body is Player:
+		image.close()
+
+static func get_last_room() -> Room:
+	if _last_synced_doors.is_empty():
+		return null
+	return _last_synced_doors[-1].get_parent()
 
 func _door_setup_check() -> void:
 	var text: String = " : "
@@ -209,24 +227,3 @@ func _door_setup_check() -> void:
 			text += str(_true_partner_door)
 	if text.length() >= 4:
 		printerr(self, text)
-
-func _on_area_2d_visual_helper_body_entered(body: Node2D) -> void:
-	# shimmy x - this does not look good yet - something other than shimmy?
-	# the current language is white outline - likely need to make that work
-	# print(_on_area_2d_visual_helper_body_entered)
-	if body is Player:
-		var tween = self.create_tween()
-		var y = _image.position.y
-		var start_x = _image.position.x
-		tween.set_trans(Tween.TRANS_LINEAR)
-		tween.tween_method(__shimmy_helper.bind(y, start_x), 0.0, 1.0, 1.0)
-
-func __shimmy_helper(domain: float, y: float, start_x: float) -> void:
-	var shimmy_range := 10.0
-	var x = start_x + (_shimmy_curve.sample(domain) * shimmy_range)
-	_image.set_position(Vector2(x, y))
-
-static func get_last_room() -> Room:
-	if _last_synced_doors.is_empty():
-		return null
-	return _last_synced_doors[-1].get_parent()

@@ -35,6 +35,8 @@ func _ready() -> void:
 		elif each_child is Interactive:
 			#each_child.action_updated.connect(_on_interaction_update)
 			_interaction_count += 1
+	if _interaction_count < 1:
+		prints("No interactions yet", self)
 
 func summon(summoning_door: Door, internal_door: Door) -> void:
 	

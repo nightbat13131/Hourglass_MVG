@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqsn0o6lohira"]
+
+[ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_j5v80"]
+[ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="2_qssch"]
+[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="3_w08oq"]
+[ext_resource type="Texture2D" uid="uid://b5dl8xtyoa5mp" path="res://images/actions/dollhouse.png" id="4_br1l1"]
+
+[sub_resource type="Resource" id="Resource_djlq8"]
+script = ExtResource("2_qssch")
+_text = "I need you to undrstand the real dollhouse was 
+2 meters long and 1 meter tall and deep."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_qodoh"]
+script = ExtResource("2_qssch")
+_text = "Never finished. 
+I never understood why my mom wanted to make it. "
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0.52549)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_ktkj8"]
+script = ExtResource("2_qssch")
+_text = "It's been wierd to realise the adults around 
+me were chasing their own dreams. "
+_sprite_frame_cord = Vector2i(0, 1)
+_sprite_color = Color(0.917144, 0.769691, 0.579712, 1)
+_highlight_color = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_taiha"]
+script = ExtResource("3_w08oq")
+_state_details = Dictionary[int, Object]({
+2: SubResource("Resource_qodoh"),
+3: SubResource("Resource_djlq8"),
+12: SubResource("Resource_ktkj8")
+})
+metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7q3d6"]
+size = Vector2(132, 107)
+
+[node name="DollHouse" type="StaticBody2D"]
+rotation = 1.5708
+script = ExtResource("1_j5v80")
+_res = SubResource("Resource_taiha")
+metadata/_custom_type_script = "uid://b27dj4q5es4ku"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_br1l1")
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 14.5)
+shape = SubResource("RectangleShape2D_7q3d6")

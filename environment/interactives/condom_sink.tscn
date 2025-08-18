@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://c4558f2ureu7e"]
+
+[ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_vm38n"]
+[ext_resource type="Texture2D" uid="uid://j6hbtrgbx3gj" path="res://images/actions/condom_sink.png" id="2_4deuj"]
+[ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="2_8750n"]
+[ext_resource type="PackedScene" uid="uid://hebggwl4r83l" path="res://environment/interactives/inventory_items/condom_item.tscn" id="2_qkiyx"]
+[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="3_qkiyx"]
+
+[sub_resource type="Resource" id="Resource_x4ig3"]
+script = ExtResource("2_8750n")
+_text = "Playing in the water would be fun..."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 1)
+_needs_item = ExtResource("2_qkiyx")
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_inx5e"]
+script = ExtResource("2_8750n")
+_text = "But I need something to play with."
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 0, 0, 0.537255)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_rllw7"]
+script = ExtResource("2_8750n")
+_text = "\"THAT'S NOT A WATER BALLON
+throwthatawayrightnow\" - Mom"
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0.529412)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_6n8b7"]
+script = ExtResource("2_8750n")
+_text = "~ i really wish hindsight hadn't figured 
+out what i was playing with~"
+_sprite_frame_cord = Vector2i(0, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_m0qsq"]
+script = ExtResource("3_qkiyx")
+_state_details = Dictionary[int, Object]({
+2: SubResource("Resource_rllw7"),
+3: SubResource("Resource_x4ig3"),
+11: SubResource("Resource_inx5e"),
+12: SubResource("Resource_6n8b7")
+})
+metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m17wn"]
+size = Vector2(55, 56)
+
+[node name="CondomSink" type="StaticBody2D"]
+rotation = -1.5708
+script = ExtResource("1_vm38n")
+_res = SubResource("Resource_m0qsq")
+metadata/_custom_type_script = "uid://b27dj4q5es4ku"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4deuj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 4)
+shape = SubResource("RectangleShape2D_m17wn")
