@@ -23,7 +23,6 @@ size = Vector2(288, 106)
 
 [node name="Door" type="Node2D"]
 script = ExtResource("1_05hnu")
-_door_material = null
 
 [node name="GarageImage" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -36,6 +35,7 @@ script = ExtResource("3_jehm5")
 
 [node name="DoorImage" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 rotation = 1.5708
 texture = ExtResource("4_mubsm")
 offset = Vector2(0, 48)
@@ -111,6 +111,7 @@ shape = SubResource("RectangleShape2D_are4n")
 debug_color = Color(0.0588235, 0.854902, 0.996078, 0.419608)
 
 [node name="Label" type="Label" parent="Area2D_sleep_helper"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -128,6 +129,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_visual_helper"]
 unique_name_in_owner = true
+visible = false
 shape = SubResource("RectangleShape2D_mubsm")
 
 [connection signal="body_shape_entered" from="Area2D_close_door_outside" to="." method="_on_area_2d_close_door_outside_body_shape_entered"]

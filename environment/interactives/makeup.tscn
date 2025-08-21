@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://ca4c4711131kn"]
+[gd_scene load_steps=10 format=3 uid="uid://ca4c4711131kn"]
 
 [ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_dfn7x"]
 [ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="2_j62d0"]
 [ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="3_g1dfj"]
 [ext_resource type="Texture2D" uid="uid://d1k5ykqarb4r1" path="res://images/actions/makeup.png" id="4_byoaa"]
 
-[sub_resource type="Resource" id="Resource_olx1w"]
+[sub_resource type="Resource" id="Resource_dfn7x"]
 script = ExtResource("2_j62d0")
 _text = "“No, I can’t be seen without my makeup!” - Aunt"
 _sprite_frame_cord = Vector2i(0, 0)
@@ -13,19 +13,28 @@ _sprite_color = Color(1, 1, 1, 1)
 _highlight_color = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
-[sub_resource type="Resource" id="Resource_c63i5"]
+[sub_resource type="Resource" id="Resource_j62d0"]
 script = ExtResource("2_j62d0")
 _text = "That seems dumb - Tiny Me"
 _sprite_frame_cord = Vector2i(0, 0)
 _sprite_color = Color(1, 1, 1, 1)
-_highlight_color = Color(1, 1, 1, 0.54902)
+_highlight_color = Color(1, 1, 1, 0.498039)
 metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
-[sub_resource type="Resource" id="Resource_yucco"]
+[sub_resource type="Resource" id="Resource_g1dfj"]
+script = ExtResource("2_j62d0")
+_text = "~went on to develope a whole slew of other insecurites~"
+_sprite_frame_cord = Vector2i(1, 0)
+_sprite_color = Color(1, 1, 1, 1)
+_highlight_color = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
+
+[sub_resource type="Resource" id="Resource_byoaa"]
 script = ExtResource("3_g1dfj")
 _state_details = Dictionary[int, Object]({
-2: SubResource("Resource_c63i5"),
-3: SubResource("Resource_olx1w")
+2: SubResource("Resource_j62d0"),
+3: SubResource("Resource_dfn7x"),
+12: SubResource("Resource_g1dfj")
 })
 metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"
 
@@ -35,7 +44,7 @@ size = Vector2(39, 65)
 [node name="Makeup" type="StaticBody2D"]
 rotation = -1.5708
 script = ExtResource("1_dfn7x")
-_res = SubResource("Resource_yucco")
+_res = SubResource("Resource_byoaa")
 metadata/_custom_type_script = "uid://b27dj4q5es4ku"
 metadata/_edit_group_ = true
 

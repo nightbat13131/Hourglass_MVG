@@ -58,8 +58,8 @@ func summon(summoning_door: Door, internal_door: Door) -> void:
 
 func activate(fast: bool) -> void:
 	var current_color = get_modulate()
-	set_collision_enabled(true)
 	set_visible(true)
+	propagate_call('set_collision_enabled', [true], true)
 	if fast: 
 		set_modulate( Color(Color.WHITE, 1.0) )
 		set_process_mode.bind(Node.PROCESS_MODE_INHERIT).call_deferred()

@@ -15,7 +15,8 @@ metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
 [sub_resource type="Resource" id="Resource_n8g2h"]
 script = ExtResource("2_g3q70")
-_text = "\"I met this guy and I think I want to marry him...\" - Mom"
+_text = "\"I met this guy and I think I want 
+to marry him...\" - Mom"
 _sprite_frame_cord = Vector2i(0, 0)
 _sprite_color = Color(0.792157, 1, 1, 1)
 _highlight_color = Color(1, 1, 1, 1)

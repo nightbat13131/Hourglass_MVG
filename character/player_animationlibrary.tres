@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=13 format=3 uid="uid://tf1dbk3w1eee"]
+[gd_resource type="AnimationLibrary" load_steps=15 format=3 uid="uid://tf1dbk3w1eee"]
 
 [sub_resource type="Animation" id="Animation_0rvpn"]
 length = 0.001
@@ -71,9 +71,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_qkjfd"]
 resource_name = "idlev"
-length = 0.498008
+length = 0.500008
 loop_mode = 1
-step = 0.083
+step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -209,9 +209,45 @@ tracks/0/keys = {
 "values": [Vector2i(18, 2), Vector2i(19, 2), Vector2i(20, 2), Vector2i(21, 2), Vector2i(22, 2), Vector2i(23, 2)]
 }
 
+[sub_resource type="Animation" id="Animation_jrkqy"]
+resource_name = "get_item"
+length = 0.500008
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(38, 10), Vector2i(37, 10), Vector2i(36, 10), Vector2i(35, 10), Vector2i(34, 10), Vector2i(33, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_2lkfu"]
+resource_name = "give_item"
+length = 0.500008
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(33, 10), Vector2i(34, 10), Vector2i(35, 10), Vector2i(36, 10), Vector2i(37, 10), Vector2i(38, 10)]
+}
+
 [resource]
 _data = {
 &"RESET": SubResource("Animation_0rvpn"),
+&"get_itemv": SubResource("Animation_jrkqy"),
+&"give_itemv": SubResource("Animation_2lkfu"),
 &"idle<": SubResource("Animation_dy06j"),
 &"idle>": SubResource("Animation_tgjim"),
 &"idle^": SubResource("Animation_wy5t8"),

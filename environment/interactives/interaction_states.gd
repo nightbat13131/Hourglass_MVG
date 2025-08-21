@@ -21,7 +21,11 @@ func get_highlight_color() -> Color: return _highlight_color
 func try_action() -> bool:
 	if _gives_item:
 		Inventory.pickup_item(_gives_item)
+		Player.call_get_item_animation()
 		return true
 	elif _needs_item: 
-		return Inventory.check_inventory(_needs_item)
+		var success = Inventory.check_inventory(_needs_item)
+		if success:
+			Player.call_give_item_animation()
+		return success
 	return true

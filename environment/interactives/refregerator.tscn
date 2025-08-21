@@ -16,7 +16,7 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(12, -1)
 texture = ExtResource("1_pr8ck")
-vframes = 2
+vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pdpkf")

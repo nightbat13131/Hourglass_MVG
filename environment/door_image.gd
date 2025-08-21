@@ -12,9 +12,9 @@ func _ready() -> void:
 	close(true)
 	show()
 
-func open(fast:= false) -> void: pass
+func open(_fast:= false) -> void: set_modulate(_open_modulate)
 
-func close(fast:= false) -> void: pass
+func close(_fast:= false) -> void: set_modulate(_close_modulate)
 
 func peek() -> void: pass
 
@@ -30,6 +30,6 @@ func clean_tweener() -> void:
 	_open_tweener.set_ease(Tween.EASE_IN)
 	_open_tweener.set_trans(Tween.TRANS_CIRC)
 
-func setup_texture_door(value: DoorMaterial) -> void:
+func setup_texture_door(_value: DoorMaterial) -> void:
 	# used by frech door, not garage door
 	pass

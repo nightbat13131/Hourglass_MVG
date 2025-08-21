@@ -1,5 +1,6 @@
 class_name Player extends CharacterBody2D
-# animation logic https://www.youtube.com/watch?v=cnXmwMpn4pw
+# animation call states  https://kidscancode.org/godot_recipes/4.x/animation/using_animation_sm/index.html
+# animation state machine https://www.youtube.com/watch?v=iosqXfNdJVw&t=319s
 const DOWN = 'v'
 const UP = '^'
 const LEFT = '<'
@@ -13,10 +14,7 @@ var _default_text = ''
 var _max_speed := Utilities.GRID_WIDTH * 7.0 # px per second
 var _acceleration := _max_speed*  .75 
 var _friction := _acceleration * 4.0
-# var _speed := _max_speed
 var _interactive : Interactive
-
-var _is_walking := false : set = set_is_walking
 
 @export var move: GUIDEAction
 @export var interact: GUIDEAction
@@ -37,7 +35,6 @@ func _ready() -> void:
 	area_2d_reach.body_entered.connect(_on_area_2d_reach_body_entered)
 	area_2d_reach.body_exited.connect(_on_area_2d_reach_body_exited)
 	_on_action_updated()
-	set_is_walking(false)
 	update_facing_direction()
 	if !move:
 		printerr("Move action missing from Character")
@@ -67,24 +64,12 @@ func _process(delta: float) -> void:
 func update_facing_direction() -> void:
 	#print_debug(velocity)
 	if is_equal_approx(velocity.length(), 0.0):
-		set_is_walking(false)
 		return # no movement, no turn
 	var direction = velocity.normalized()
-	set_is_walking(true)
 	if abs(direction.x) == abs(direction.y) and direction.y < 0.0 : # ties looking up go to left/right
 		direction.y = 0
 	animation_tree['parameters/idle/blend_position'] = direction
 	animation_tree['parameters/walk/blend_position'] = direction
-	#debug_text.set_text(str(direction.normalized()) + str(velocity))
-
-func set_is_walking(new_value: bool) -> void:
-	#print_debug(new_value)
-	if _is_walking == new_value:
-		return 
-	_is_walking = new_value
-	animation_tree['parameters/conditions/is_walking'] = _is_walking
-	animation_tree['parameters/conditions/is_idle'] = !_is_walking
-	#print_debug(animation_tree['parameters/conditions/is_walking'], animation_tree['parameters/conditions/is_idle'])
 
 func has_interaction() -> bool:
 	return !_interactive == null
@@ -137,3 +122,9 @@ func _on_game_finished() -> void:
 static func set_debug_text(text: String) -> void: _instance.debug_text.set_text(text)
 
 static func get_player() -> Player: return _instance
+
+static func call_get_item_animation() -> void: #get_itemv
+	_instance.playback.travel("get_itemv")
+
+static func call_give_item_animation() -> void: # give_itemv
+	_instance.playback.travel("give_itemv")
