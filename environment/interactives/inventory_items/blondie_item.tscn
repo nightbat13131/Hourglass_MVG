@@ -1,11 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://j88bucaux3qt"]
+[gd_scene load_steps=4 format=3 uid="uid://j88bucaux3qt"]
 
 [ext_resource type="Texture2D" uid="uid://bctp60ompt3om" path="res://images/actions/Blondie_icon.png" id="1_ho6cw"]
+[ext_resource type="Texture2D" uid="uid://c1hekf00p6abc" path="res://images/actions/icon_frame.png" id="1_s1jqr"]
 [ext_resource type="Script" uid="uid://v7kmtg1c8sbu" path="res://environment/interactives/inventory_items/inventory_item.gd" id="2_hqm6w"]
 
-[node name="Sprite2D" type="TextureRect"]
-offset_right = 15.0
-offset_bottom = 15.0
+[node name="TextureRect" type="TextureRect"]
+offset_right = 48.0
+offset_bottom = 52.0
+texture = ExtResource("1_s1jqr")
+script = ExtResource("2_hqm6w")
+
+[node name="Sprite2D" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_ho6cw")
 stretch_mode = 2
-script = ExtResource("2_hqm6w")

@@ -1,53 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://xq503kb5b3y5"]
+[gd_scene load_steps=6 format=3 uid="uid://xq503kb5b3y5"]
 
 [ext_resource type="Script" uid="uid://b27dj4q5es4ku" path="res://environment/interactives/interactive.gd" id="1_ddo2g"]
-[ext_resource type="Script" uid="uid://dg7aiv6m3uyoj" path="res://environment/interactives/interaction_states.gd" id="2_sqm4f"]
-[ext_resource type="PackedScene" uid="uid://j88bucaux3qt" path="res://environment/interactives/inventory_items/blondie_item.tscn" id="3_sfong"]
+[ext_resource type="Resource" uid="uid://dm2oiujjj0jqe" path="res://environment/interactives/receive_blondie_del_bed.tres" id="2_ddo2g"]
 [ext_resource type="Texture2D" uid="uid://dy42ht30dquml" path="res://images/actions/Blondie_sprite.png" id="3_sqm4f"]
-[ext_resource type="Script" uid="uid://bmjs6v4oaq8sf" path="res://environment/interactives/interaction_resource.gd" id="4_4u046"]
-
-[sub_resource type="Resource" id="Resource_a8uq5"]
-script = ExtResource("2_sqm4f")
-_text = "yes, and beyond"
-_sprite_frame_cord = Vector2i(0, 0)
-_sprite_color = Color(1, 1, 1, 1)
-_highlight_color = Color(1, 1, 1, 0)
-metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
-
-[sub_resource type="Resource" id="Resource_h40l3"]
-script = ExtResource("2_sqm4f")
-_text = "even here?"
-_sprite_frame_cord = Vector2i(0, 0)
-_sprite_color = Color(0, 0, 0, 1)
-_highlight_color = Color(1, 1, 1, 1)
-_needs_item = ExtResource("3_sfong")
-metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
-
-[sub_resource type="Resource" id="Resource_fcp5g"]
-script = ExtResource("2_sqm4f")
-_text = "simple comforts"
-_sprite_frame_cord = Vector2i(0, 0)
-_sprite_color = Color(0, 0, 0, 1)
-_highlight_color = Color(1, 1, 1, 1)
-metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
-
-[sub_resource type="Resource" id="Resource_tujjp"]
-script = ExtResource("2_sqm4f")
-_text = "I carry you with me still."
-_sprite_frame_cord = Vector2i(0, 0)
-_sprite_color = Color(1, 1, 1, 1)
-_highlight_color = Color(1, 1, 1, 0)
-metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
-
-[sub_resource type="Resource" id="Resource_3kdgg"]
-script = ExtResource("4_4u046")
-_state_details = Dictionary[int, Object]({
-2: SubResource("Resource_a8uq5"),
-3: SubResource("Resource_h40l3"),
-11: SubResource("Resource_fcp5g"),
-12: SubResource("Resource_tujjp")
-})
-metadata/_custom_type_script = "uid://bmjs6v4oaq8sf"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wk18p"]
 atlas = ExtResource("3_sqm4f")
@@ -58,7 +13,7 @@ radius = 24.0
 
 [node name="Receive_Blondie_Del_Bed" type="StaticBody2D"]
 script = ExtResource("1_ddo2g")
-_res = SubResource("Resource_3kdgg")
+_res = ExtResource("2_ddo2g")
 metadata/_custom_type_script = "uid://b27dj4q5es4ku"
 
 [node name="TextureRect" type="TextureRect" parent="."]

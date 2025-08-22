@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_jm43n"]
 script = ExtResource("1_70d6m")
-_text = "success"
+_text = "Surpase so many \"cooler\" toys. "
 _sprite_frame_cord = Vector2i(0, 0)
 _sprite_color = Color(1, 1, 1, 1)
 _highlight_color = Color(1, 1, 1, 0)
@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://dg7aiv6m3uyoj"
 
 [sub_resource type="Resource" id="Resource_h040v"]
 script = ExtResource("1_70d6m")
-_text = "Something important is Missing"
+_text = "ohhhhh where is it"
 _sprite_frame_cord = Vector2i(0, 0)
 _sprite_color = Color(0, 0, 0, 1)
 _highlight_color = Color(1, 1, 1, 1)
