@@ -94,14 +94,14 @@ func get_parent_room_type() -> Room.RoomTypes:
 func _draw() -> void:
 	if !Engine.is_editor_hint():
 		return
-	var height = Utilities.GRID_HEIGHT * ( 2 if _is_car_garage else 1)
-	draw_polygon(
-		PackedVector2Array([
-			Vector2(-1*Utilities.GRID_WIDTH/4.0, height), Vector2(Utilities.GRID_WIDTH/4.0, height),
-			Vector2(Utilities.GRID_WIDTH/4.0, -1* height), Vector2(-1*Utilities.GRID_WIDTH/4.0, -1*height)  ] 
-			),
-		[Color.TAN]
-	)
+	#var height = Utilities.GRID_HEIGHT * ( 2 if _is_car_garage else 1)
+	#draw_polygon(
+		#PackedVector2Array([
+			#Vector2(-1*Utilities.GRID_WIDTH/4.0, height), Vector2(Utilities.GRID_WIDTH/4.0, height),
+			#Vector2(Utilities.GRID_WIDTH/4.0, -1* height), Vector2(-1*Utilities.GRID_WIDTH/4.0, -1*height)  ] 
+			#),
+		#[Color.TAN]
+	#)
 	
 	draw_line(Vector2.ZERO, Vector2.from_angle( 0 * (PI/2.0) )*Utilities.GRID_WIDTH*3, Color.WHEAT, 3.0)
 	draw_line(Vector2.from_angle( 1 * (PI/2.0) )*Utilities.GRID_WIDTH, Vector2.from_angle( -1 * (PI/2.0) )*Utilities.GRID_WIDTH, Color.BLUE, 2.0)
