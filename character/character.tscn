@@ -162,7 +162,6 @@ shape = SubResource("CircleShape2D_ugqs2")
 debug_color = Color(0.815552, 0.33808, 0.590092, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

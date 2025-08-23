@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://bda3jplm8lhr2"]
+[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://bda3jplm8lhr2"]
 
 [ext_resource type="Texture2D" uid="uid://bnbw6ekyekpqh" path="res://images/tilemaps/Autotiles_Godot_48x48.png" id="1_obfxd"]
+[ext_resource type="Texture2D" uid="uid://cjkwxlovj6n4d" path="res://images/props/17_Garden_48xx48.png" id="2_b88ae"]
 [ext_resource type="Texture2D" uid="uid://dh8ydnygl1eio" path="res://images/props/3_City_Props_48x48.png" id="3_4spkv"]
 [ext_resource type="Texture2D" uid="uid://5yv7vx3xjoyl" path="res://images/props/4_Generic_Buildings_48x48.png" id="4_edift"]
 [ext_resource type="Texture2D" uid="uid://b78v0o3inyilt" path="res://images/props/6_Garage_Sales_48x48.png" id="5_gfv8j"]
@@ -1056,6 +1057,42 @@ texture_region_size = Vector2i(48, 48)
 11:45/0/terrains_peering_bit/top_side = 3
 11:45/0/terrains_peering_bit/top_right_corner = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8sv00"]
+texture = ExtResource("2_b88ae")
+texture_region_size = Vector2i(48, 48)
+6:6/0 = 0
+6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+6:5/0 = 0
+6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+6:4/0 = 0
+6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+8:2/0 = 0
+8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+8:3/0 = 0
+8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+9:2/0 = 0
+9:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+9:3/0 = 0
+9:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+9:4/0 = 0
+9:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+9:5/0 = 0
+9:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+9:6/0 = 0
+9:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+9:1/0 = 0
+9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_edift"]
 texture = ExtResource("3_4spkv")
 texture_region_size = Vector2i(48, 48)
@@ -1476,6 +1513,10 @@ texture_region_size = Vector2i(48, 48)
 12:13/0 = 0
 14:13/0 = 0
 16:13/0 = 0
+11:7/0 = 0
+11:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(11.5717, -24, 24, -24, 24, 24, 11.5717, 24)
+7:7/0 = 0
+7:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(11.5717, -24, 24, -24, 24, 24, 11.5717, 24)
 
 [resource]
 tile_size = Vector2i(48, 48)
@@ -1503,3 +1544,4 @@ sources/3 = SubResource("TileSetAtlasSource_gfv8j")
 sources/4 = SubResource("TileSetAtlasSource_30dpy")
 sources/5 = SubResource("TileSetAtlasSource_b88ae")
 sources/6 = SubResource("TileSetAtlasSource_57k7s")
+sources/1 = SubResource("TileSetAtlasSource_8sv00")
