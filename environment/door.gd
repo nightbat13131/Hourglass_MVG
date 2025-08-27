@@ -18,8 +18,6 @@ static var _all_doors : Array[Door]
 @export var _is_car_garage := false
 @export var _door_material := DoorImage.DoorMaterial.WOOD
 
-#@export var _shimmy_curve : Curve
-
 @onready var area_player_average: Area2D = %Area_PlayerAverage
 @onready var area_2d_close_door_inside: Area2D = %Area2D_close_door_inside
 @onready var area_2d_close_door_outside: Area2D = %Area2D_close_door_outside
@@ -75,7 +73,8 @@ func _ready() -> void:
 			_door_image.set_texture(null)
 		else:
 			image.setup_texture_door(_door_material)
-	image.show()
+	if !_is_stairs:
+		image.show()
 
 func get_connected_room_type() -> Room.RoomTypes:
 	if _true_partner_door != null:
@@ -92,19 +91,9 @@ func get_parent_room_type() -> Room.RoomTypes:
 		return Room.RoomTypes.None
 
 func _draw() -> void:
-	if !Engine.is_editor_hint():
-		return
-	#var height = Utilities.GRID_HEIGHT * ( 2 if _is_car_garage else 1)
-	#draw_polygon(
-		#PackedVector2Array([
-			#Vector2(-1*Utilities.GRID_WIDTH/4.0, height), Vector2(Utilities.GRID_WIDTH/4.0, height),
-			#Vector2(Utilities.GRID_WIDTH/4.0, -1* height), Vector2(-1*Utilities.GRID_WIDTH/4.0, -1*height)  ] 
-			#),
-		#[Color.TAN]
-	#)
-	
-	draw_line(Vector2.ZERO, Vector2.from_angle( 0 * (PI/2.0) )*Utilities.GRID_WIDTH*3, Color.WHEAT, 3.0)
-	draw_line(Vector2.from_angle( 1 * (PI/2.0) )*Utilities.GRID_WIDTH, Vector2.from_angle( -1 * (PI/2.0) )*Utilities.GRID_WIDTH, Color.BLUE, 2.0)
+	if Engine.is_editor_hint():
+		draw_line(Vector2.ZERO, Vector2.from_angle( 0 * (PI/2.0) )*Utilities.GRID_WIDTH*3, Color.WHEAT, 3.0)
+		draw_line(Vector2.from_angle( 1 * (PI/2.0) )*Utilities.GRID_WIDTH, Vector2.from_angle( -1 * (PI/2.0) )*Utilities.GRID_WIDTH, Color.BLUE, 2.0)
 
 func _on_area_entered(_area: Area2D) -> void:
 	_open_door()
@@ -134,12 +123,14 @@ func _open_door() -> void:
 		return
 	_temp_partner_door.sync_with(self)
 	_is_open = true
-	image.open()
+	if !_is_stairs:
+		image.open()
 	#set_modulate(Color.ORANGE_RED)
 
 func _close_door() -> void:
 	_is_open = false
-	image.close()
+	if !_is_stairs:
+		image.close()
 
 func _on_body_change(body: Node2D, is_entering: bool, area: Area2D) -> void:
 	if !body is Player:
@@ -202,15 +193,18 @@ func set_is_asleep(is_asleep: bool) -> void:
 		_is_asleep = is_asleep
 		area_2d_sleep_helper.set_visible(_is_asleep)
 		if _is_asleep:
-			image.open(true)
+			if !_is_stairs:
+				image.open(true)
 
 func _on_area_2d_visual_helper_body_entered(body: Node2D) -> void:
 	if body is Player and !_is_asleep:
-		image.peek()
+		if !_is_stairs:
+			image.peek()
 
 func _on_area_2d_visual_helper_body_exited(body: Node2D) -> void:
 	if body is Player:
-		image.close()
+		if !_is_stairs:
+			image.close()
 
 static func get_last_room() -> Room:
 	if _last_synced_doors.is_empty():

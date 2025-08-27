@@ -26,8 +26,8 @@ GUIDE="*res://addons/guide/guide.gd"
 
 [display]
 
-window/size/viewport_width=900
-window/size/viewport_height=900
+window/size/viewport_width=750
+window/size/viewport_height=750
 window/size/borderless=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"

@@ -9,15 +9,15 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4thhm"]
 atlas = ExtResource("6_s4bvx")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k1ihi"]
 atlas = ExtResource("6_s4bvx")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fphji"]
 atlas = ExtResource("6_s4bvx")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(64, 0, 64, 64)
 
 [node name="GameRoot" type="Node2D"]
 script = ExtResource("1_thas4")
